@@ -2,7 +2,6 @@
 package com.swrest.controlador;
 
 import com.swrest.model.SclContacto;
-import com.swrest.model.SclContactoPK;
 import com.swrest.servicio.contactoserv;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

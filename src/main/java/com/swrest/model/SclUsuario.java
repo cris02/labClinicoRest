@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,7 +25,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_usuario", catalog = "labclinicodb", schema = "public",  uniqueConstraints = {
+@Table(name = "usuario", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_usuario"})})
 @NamedQueries({
     @NamedQuery(name = "SclUsuario.findAll", query = "SELECT s FROM SclUsuario s")})
@@ -35,9 +33,10 @@ public class SclUsuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_usuario", nullable = false, length = 30)
-    private String idUsuario;
+    @Column(name = "id_usuario", nullable = false)
+    private Integer idUsuario;
     @Basic(optional = false)
     @Column(name = "nombre", nullable = false, length = 30)
     private String nombre;
@@ -46,7 +45,7 @@ public class SclUsuario implements Serializable {
     private String apellido;
     @Basic(optional = false)
     @Column(name = "password", nullable = false, length = 60)
-    private String password;
+    private String clave;
     @Basic(optional = false)
     @Column(name = "correo", nullable = false, length = 25)
     private String correo;
@@ -65,32 +64,30 @@ public class SclUsuario implements Serializable {
     @Column(name = "fec_modi")
     @Temporal(TemporalType.DATE)
     private Date fecModi;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sclUsuario", fetch = FetchType.LAZY)
-    private SclInfoprofecional sclInfoprofecional;
 
     public SclUsuario() {
     }
 
-    public SclUsuario(String idUsuario) {
+    public SclUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public SclUsuario(String idUsuario, String nombre, String apellido, String password, String correo, boolean activo, String usuCrea, Date fecCrea) {
+    public SclUsuario(Integer idUsuario, String nombre, String apellido, String clave, String correo, boolean activo, String usuCrea, Date fecCrea) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.password = password;
+        this.clave = clave;
         this.correo = correo;
         this.activo = activo;
         this.usuCrea = usuCrea;
         this.fecCrea = fecCrea;
     }
 
-    public String getIdUsuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -110,12 +107,12 @@ public class SclUsuario implements Serializable {
         this.apellido = apellido;
     }
 
-    public String getPassword() {
-        return password;
+    public String getClave() {
+        return clave;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public String getCorreo() {
@@ -166,14 +163,6 @@ public class SclUsuario implements Serializable {
         this.fecModi = fecModi;
     }
 
-    public SclInfoprofecional getSclInfoprofecional() {
-        return sclInfoprofecional;
-    }
-
-    public void setSclInfoprofecional(SclInfoprofecional sclInfoprofecional) {
-        this.sclInfoprofecional = sclInfoprofecional;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -196,7 +185,7 @@ public class SclUsuario implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclUsuario[ idUsuario=" + idUsuario + " ]";
+        return "persistencialab.persistencia.SclUsuario[ idUsuario=" + idUsuario + " ]";
     }
     
 }
