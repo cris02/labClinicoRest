@@ -30,7 +30,9 @@ public class rptcontrolador
 {
     @Autowired
     private usuarioserv usuarioservicio;
+    @Autowired
     private tipodocumentoserv tipodocumentoservicio;
+    @Autowired
     private paisserv paisservicio;
 
     
