@@ -36,7 +36,10 @@ public class SclUsuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_usuario", nullable = false)
-    private Integer idUsuario;
+    private String idUsuario;
+    @Basic(optional = false)
+    @Column(name = "id_clinica", nullable = false)
+    private Integer idClinica;
     @Basic(optional = false)
     @Column(name = "nombre", nullable = false, length = 30)
     private String nombre;
@@ -68,12 +71,14 @@ public class SclUsuario implements Serializable {
     public SclUsuario() {
     }
 
-    public SclUsuario(Integer idUsuario) {
+    public SclUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public SclUsuario(Integer idUsuario, String nombre, String apellido, String clave, String correo, boolean activo, String usuCrea, Date fecCrea) {
+    public SclUsuario(String idUsuario, Integer idClinica, String nombre, String apellido, 
+    		String clave, String correo, boolean activo, String usuCrea, Date fecCrea) {
         this.idUsuario = idUsuario;
+        this.idClinica = idClinica;
         this.nombre = nombre;
         this.apellido = apellido;
         this.clave = clave;
@@ -83,11 +88,11 @@ public class SclUsuario implements Serializable {
         this.fecCrea = fecCrea;
     }
 
-    public Integer getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 

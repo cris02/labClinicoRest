@@ -12,14 +12,27 @@ public class usuarioserv
     @Autowired
     private UsuarioRepository usuariorepositorio;
     
+    //Guarda y actualiza
     public SclUsuario insertar(SclUsuario usu)
     { return usuariorepositorio.save(usu); }
     
-    public SclUsuario actualizar(SclUsuario usu)
-    { return usuariorepositorio.save(usu); }
+    //public SclUsuario actualizar(SclUsuario usu)
+    //{ return usuariorepositorio.save(usu); }
     
     public List<SclUsuario> listar()
     { return usuariorepositorio.findAll(); }
+    
+	public SclUsuario darDeBaja(String id) {
+    	SclUsuario user = usuariorepositorio.findById(id).get();
+    	if(user.getActivo() == true)
+    		user.setActivo(false);
+    	else
+    		user.setActivo(true);
+    	
+    	usuariorepositorio.save(user);
+    	
+    	return user;
+    }
     
     public void eliminar(SclUsuario usu)
     { usuariorepositorio.delete(usu); }
