@@ -38,9 +38,6 @@ public class SclUsuario implements Serializable {
     @Column(name = "id_usuario", nullable = false)
     private String idUsuario;
     @Basic(optional = false)
-    @Column(name = "id_clinica", nullable = false)
-    private Integer idClinica;
-    @Basic(optional = false)
     @Column(name = "nombre", nullable = false, length = 30)
     private String nombre;
     @Basic(optional = false)
@@ -75,10 +72,9 @@ public class SclUsuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public SclUsuario(String idUsuario, Integer idClinica, String nombre, String apellido, 
+    public SclUsuario(String idUsuario, String nombre, String apellido, 
     		String clave, String correo, boolean activo, String usuCrea, Date fecCrea) {
         this.idUsuario = idUsuario;
-        this.idClinica = idClinica;
         this.nombre = nombre;
         this.apellido = apellido;
         this.clave = clave;
