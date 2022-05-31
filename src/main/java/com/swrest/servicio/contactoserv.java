@@ -1,7 +1,6 @@
 package com.swrest.servicio;
 
 import com.swrest.model.SclContacto;
-import com.swrest.model.SclContactoPK;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

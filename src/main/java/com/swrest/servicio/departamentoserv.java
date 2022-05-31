@@ -1,7 +1,6 @@
 package com.swrest.servicio;
 
 import com.swrest.model.SclDepartamento;
-import com.swrest.model.SclDepartamentoPK;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

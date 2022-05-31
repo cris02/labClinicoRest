@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * @author Alexa
  */
 @Repository
-public interface PaisRepository extends JpaRepository <SclPais, Integer>
+public interface PaisRepository extends JpaRepository <SclPais, String>
 {
 
     
