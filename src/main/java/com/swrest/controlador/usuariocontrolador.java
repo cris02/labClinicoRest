@@ -6,14 +6,11 @@ import com.swrest.servicio.usuarioserv;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -34,10 +31,10 @@ public class usuariocontrolador
     
     @PutMapping("/upt")
     public SclUsuario actualizar(@RequestBody SclUsuario usu)
-    { return usuarioservicio.insertar(usu); }
+    { return usuarioservicio.actualizar(usu); }
     
     @PutMapping("/flag")
     public SclUsuario darDeBaja(@RequestBody SclUsuario usu)
-    { return usuarioservicio.darDeBaja(usu.getIdUsuario()); }
+    { return usuarioservicio.darDeBaja(usu); }
     
 }
