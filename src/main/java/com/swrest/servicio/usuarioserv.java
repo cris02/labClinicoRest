@@ -16,7 +16,7 @@ public class usuarioserv
     { return usuariorepositorio.save(usu); }
     
     public SclUsuario actualizar(SclUsuario usu)
-    { 	//comprueba si el id existe
+    { 	//verifica si el id existe
     	if(usuariorepositorio.existsById(usu.getIdUsuario()))
     		return usuariorepositorio.save(usu);
     	else
@@ -29,7 +29,7 @@ public class usuarioserv
 	public SclUsuario darDeBaja(SclUsuario usu) 
 	{
 		if(usuariorepositorio.existsById(usu.getIdUsuario())) {
-			SclUsuario user = usuariorepositorio.getById(usu.getIdUsuario());
+			SclUsuario user = usuariorepositorio.findById(usu.getIdUsuario()).get();
 	    	if(user.getActivo() == true)
 	    		user.setActivo(false);
 	    	else
@@ -38,15 +38,13 @@ public class usuarioserv
 	    	usuariorepositorio.save(user);
 	    	
 	    	return user;
-		}
-		else
+		} else 
 			return null;
     }
     
     public void eliminar(SclUsuario usu)
     {
     	try {
-    		//Comprobamos si el usuario existe
     		if(usuariorepositorio.existsById(usu.getIdUsuario()))
         		usuariorepositorio.delete(usu); 
 		} catch (Exception e) {
