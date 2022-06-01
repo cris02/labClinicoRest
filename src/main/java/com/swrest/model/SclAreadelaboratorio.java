@@ -8,14 +8,17 @@ package com.swrest.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -24,7 +27,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_areadelaboratorio", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_areadelaboratorio", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_area"})})
 @NamedQueries({
     @NamedQuery(name = "SclAreadelaboratorio.findAll", query = "SELECT s FROM SclAreadelaboratorio s")})
@@ -32,6 +35,7 @@ public class SclAreadelaboratorio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_area", nullable = false)
     private Integer idArea;
@@ -41,8 +45,11 @@ public class SclAreadelaboratorio implements Serializable {
     @Basic(optional = false)
     @Column(name = "cod_area", nullable = false, length = 10)
     private String codArea;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclAreadelaboratorio", fetch = FetchType.LAZY)
-    private List<SclHechosArea> sclHechosAreaList;
+    @JoinTable(name = "scl_profecionalporarea", joinColumns = {
+        @JoinColumn(name = "id_area", referencedColumnName = "id_area", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<SclUsuario> sclUsuarioList;
 
     public SclAreadelaboratorio() {
     }
@@ -81,12 +88,12 @@ public class SclAreadelaboratorio implements Serializable {
         this.codArea = codArea;
     }
 
-    public List<SclHechosArea> getSclHechosAreaList() {
-        return sclHechosAreaList;
+    public List<SclUsuario> getSclUsuarioList() {
+        return sclUsuarioList;
     }
 
-    public void setSclHechosAreaList(List<SclHechosArea> sclHechosAreaList) {
-        this.sclHechosAreaList = sclHechosAreaList;
+    public void setSclUsuarioList(List<SclUsuario> sclUsuarioList) {
+        this.sclUsuarioList = sclUsuarioList;
     }
 
     @Override
@@ -111,7 +118,7 @@ public class SclAreadelaboratorio implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclAreadelaboratorio[ idArea=" + idArea + " ]";
+        return "persistencialabclinico.entities.SclAreadelaboratorio[ idArea=" + idArea + " ]";
     }
     
 }

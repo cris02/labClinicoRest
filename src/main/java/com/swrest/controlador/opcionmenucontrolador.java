@@ -1,7 +1,7 @@
 
 package com.swrest.controlador;
 
-import com.swrest.model.SclOpcionMenu;
+import com.swrest.model.SclOpcionmenu;
 import com.swrest.servicio.opcionmenuserv;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +23,19 @@ public class opcionmenucontrolador
     private opcionmenuserv objservicio;
     
     @GetMapping
-    public List<SclOpcionMenu> listar()
+    public List<SclOpcionmenu> listar()
     { return objservicio.listar(); }
     
     @PostMapping
-    public SclOpcionMenu insertar(@RequestBody SclOpcionMenu usu)
+    public SclOpcionmenu insertar(@RequestBody SclOpcionmenu usu)
     { return objservicio.insertar(usu); }
     
     @PutMapping
-    public SclOpcionMenu actualizar(@RequestBody SclOpcionMenu usu)
+    public SclOpcionmenu actualizar(@RequestBody SclOpcionmenu usu)
     { return objservicio.actualizar(usu); }
     
     @DeleteMapping
-    public void eliminar(@RequestBody SclOpcionMenu usu)
+    public void eliminar(@RequestBody SclOpcionmenu usu)
     { objservicio.eliminar(usu); }
     
 }

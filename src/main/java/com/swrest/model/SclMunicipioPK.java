@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
@@ -91,7 +90,7 @@ public class SclMunicipioPK implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclMunicipioPK[ idPais=" + idPais + ", idDepto=" + idDepto + ", idMunicipio=" + idMunicipio + " ]";
+        return "persistencialabclinico.entities.SclMunicipioPK[ idPais=" + idPais + ", idDepto=" + idDepto + ", idMunicipio=" + idMunicipio + " ]";
     }
     
 }

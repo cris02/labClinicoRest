@@ -6,12 +6,16 @@
 package com.swrest.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -20,7 +24,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_pais", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_pais", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_pais"})})
 @NamedQueries({
     @NamedQuery(name = "SclPais.findAll", query = "SELECT s FROM SclPais s")})
@@ -32,11 +36,13 @@ public class SclPais implements Serializable {
     @Column(name = "id_pais", nullable = false, length = 3)
     private String idPais;
     @Basic(optional = false)
-    @Column(name = "nom_pais", nullable = false, length = 30)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
     @Basic(optional = false)
     @Column(name = "id_iso2", nullable = false, length = 2)
     private String idIso2;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPais", fetch = FetchType.LAZY)
+    private List<SclDepartamento> sclDepartamentoList;
 
     public SclPais() {
     }
@@ -75,6 +81,14 @@ public class SclPais implements Serializable {
         this.idIso2 = idIso2;
     }
 
+    public List<SclDepartamento> getSclDepartamentoList() {
+        return sclDepartamentoList;
+    }
+
+    public void setSclDepartamentoList(List<SclDepartamento> sclDepartamentoList) {
+        this.sclDepartamentoList = sclDepartamentoList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -97,7 +111,7 @@ public class SclPais implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.persistencia.SclPais[ idPais=" + idPais + " ]";
+        return "persistencialabclinico.entities.SclPais[ idPais=" + idPais + " ]";
     }
     
 }

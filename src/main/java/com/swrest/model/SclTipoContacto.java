@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
@@ -13,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,7 +26,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_tipo_contacto", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_tipo_contacto", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_tipocontacto"})})
 @NamedQueries({
     @NamedQuery(name = "SclTipoContacto.findAll", query = "SELECT s FROM SclTipoContacto s")})
@@ -33,6 +34,7 @@ public class SclTipoContacto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_tipocontacto", nullable = false)
     private Integer idTipocontacto;
@@ -100,7 +102,7 @@ public class SclTipoContacto implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclTipoContacto[ idTipocontacto=" + idTipocontacto + " ]";
+        return "persistencialabclinico.entities.SclTipoContacto[ idTipocontacto=" + idTipocontacto + " ]";
     }
     
 }

@@ -7,12 +7,17 @@ package com.swrest.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,7 +30,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "usuario", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_usuario", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_usuario"})})
 @NamedQueries({
     @NamedQuery(name = "SclUsuario.findAll", query = "SELECT s FROM SclUsuario s")})
@@ -36,15 +41,15 @@ public class SclUsuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_usuario", nullable = false)
-    private String idUsuario;
+    private Integer idUsuario;
     @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 30)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
     @Basic(optional = false)
     @Column(name = "apellido", nullable = false, length = 30)
     private String apellido;
     @Basic(optional = false)
-    @Column(name = "password", nullable = false, length = 60)
+    @Column(name = "clave", nullable = false, length = 60)
     private String clave;
     @Basic(optional = false)
     @Column(name = "correo", nullable = false, length = 25)
@@ -52,10 +57,15 @@ public class SclUsuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "activo", nullable = false)
     private boolean activo;
+    @Column(name = "profesion", length = 25)
+    private String profesion;
+    @Column(name = "njv")
+    private Integer njv;
     @Basic(optional = false)
     @Column(name = "usu_crea", nullable = false, length = 30)
     private String usuCrea;
-    @Column(name = "usu_modi", length = 30)
+    @Basic(optional = false)
+    @Column(name = "usu_modi", nullable = false, length = 30)
     private String usuModi;
     @Basic(optional = false)
     @Column(name = "fec_crea", nullable = false)
@@ -64,16 +74,20 @@ public class SclUsuario implements Serializable {
     @Column(name = "fec_modi")
     @Temporal(TemporalType.DATE)
     private Date fecModi;
+    @ManyToMany(mappedBy = "sclUsuarioList", fetch = FetchType.LAZY)
+    private List<SclAreadelaboratorio> sclAreadelaboratorioList;
+    @JoinColumn(name = "id_clinica", referencedColumnName = "id_clinica", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private SclClinica idClinica;
 
     public SclUsuario() {
     }
 
-    public SclUsuario(String idUsuario) {
+    public SclUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public SclUsuario(String idUsuario, String nombre, String apellido, 
-    		String clave, String correo, boolean activo, String usuCrea, Date fecCrea) {
+    public SclUsuario(Integer idUsuario, String nombre, String apellido, String clave, String correo, boolean activo, String usuCrea, String usuModi, Date fecCrea) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -81,14 +95,15 @@ public class SclUsuario implements Serializable {
         this.correo = correo;
         this.activo = activo;
         this.usuCrea = usuCrea;
+        this.usuModi = usuModi;
         this.fecCrea = fecCrea;
     }
 
-    public String getIdUsuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -132,6 +147,22 @@ public class SclUsuario implements Serializable {
         this.activo = activo;
     }
 
+    public String getProfesion() {
+        return profesion;
+    }
+
+    public void setProfesion(String profesion) {
+        this.profesion = profesion;
+    }
+
+    public Integer getNjv() {
+        return njv;
+    }
+
+    public void setNjv(Integer njv) {
+        this.njv = njv;
+    }
+
     public String getUsuCrea() {
         return usuCrea;
     }
@@ -164,6 +195,22 @@ public class SclUsuario implements Serializable {
         this.fecModi = fecModi;
     }
 
+    public List<SclAreadelaboratorio> getSclAreadelaboratorioList() {
+        return sclAreadelaboratorioList;
+    }
+
+    public void setSclAreadelaboratorioList(List<SclAreadelaboratorio> sclAreadelaboratorioList) {
+        this.sclAreadelaboratorioList = sclAreadelaboratorioList;
+    }
+
+    public SclClinica getIdClinica() {
+        return idClinica;
+    }
+
+    public void setIdClinica(SclClinica idClinica) {
+        this.idClinica = idClinica;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -186,7 +233,7 @@ public class SclUsuario implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.persistencia.SclUsuario[ idUsuario=" + idUsuario + " ]";
+        return "persistencialabclinico.entities.SclUsuario[ idUsuario=" + idUsuario + " ]";
     }
     
 }

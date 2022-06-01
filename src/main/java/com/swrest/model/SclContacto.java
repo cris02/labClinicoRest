@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
@@ -24,7 +23,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_contacto", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_contacto", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_tipocontacto", "id_paciente", "id_contacto"})})
 @NamedQueries({
     @NamedQuery(name = "SclContacto.findAll", query = "SELECT s FROM SclContacto s")})
@@ -123,7 +122,7 @@ public class SclContacto implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclContacto[ sclContactoPK=" + sclContactoPK + " ]";
+        return "persistencialabclinico.entities.SclContacto[ sclContactoPK=" + sclContactoPK + " ]";
     }
     
 }

@@ -137,9 +137,6 @@ public class SclExamenurianalisis implements Serializable {
     @Column(name = "fec_modi")
     @Temporal(TemporalType.DATE)
     private Date fecModi;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private SclInfoprofecional idUsuario;
     @JoinColumn(name = "id_ordenexamen", referencedColumnName = "id_ordenexamen", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclOrdendeexamen sclOrdendeexamen;
@@ -502,14 +499,6 @@ public class SclExamenurianalisis implements Serializable {
 
     public void setFecModi(Date fecModi) {
         this.fecModi = fecModi;
-    }
-
-    public SclInfoprofecional getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(SclInfoprofecional idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public SclOrdendeexamen getSclOrdendeexamen() {

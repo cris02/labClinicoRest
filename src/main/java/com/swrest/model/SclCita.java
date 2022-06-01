@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,7 +28,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_cita", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_cita", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_cita"})})
 @NamedQueries({
     @NamedQuery(name = "SclCita.findAll", query = "SELECT s FROM SclCita s")})
@@ -34,6 +36,7 @@ public class SclCita implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_cita", nullable = false)
     private Integer idCita;
@@ -103,7 +106,7 @@ public class SclCita implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclCita[ idCita=" + idCita + " ]";
+        return "persistencialabclinico.entities.SclCita[ idCita=" + idCita + " ]";
     }
     
 }

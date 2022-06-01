@@ -1,9 +1,10 @@
 package com.swrest.servicio;
 
-import com.swrest.model.SclAreadelaboratorio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.swrest.model.SclAreadelaboratorio;
 import com.swrest.repositorio.AreaDeLaboratorioRepository;
 
 @Service

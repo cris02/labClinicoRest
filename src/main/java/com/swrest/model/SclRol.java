@@ -3,15 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,7 +28,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_rol", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_rol", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_rol"})})
 @NamedQueries({
     @NamedQuery(name = "SclRol.findAll", query = "SELECT s FROM SclRol s")})
@@ -32,9 +36,10 @@ public class SclRol implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_rol", nullable = false, length = 30)
-    private String idRol;
+    @Column(name = "id_rol", nullable = false)
+    private Integer idRol;
     @Basic(optional = false)
     @Column(name = "desc_rol", nullable = false, length = 60)
     private String descRol;
@@ -50,26 +55,28 @@ public class SclRol implements Serializable {
     @Column(name = "fec_modi2")
     @Temporal(TemporalType.DATE)
     private Date fecModi2;
+    @ManyToMany(mappedBy = "sclRolList", fetch = FetchType.LAZY)
+    private List<SclOpcionmenu> sclOpcionmenuList;
 
     public SclRol() {
     }
 
-    public SclRol(String idRol) {
+    public SclRol(Integer idRol) {
         this.idRol = idRol;
     }
 
-    public SclRol(String idRol, String descRol, String usuCrea, Date fecCrea2) {
+    public SclRol(Integer idRol, String descRol, String usuCrea, Date fecCrea2) {
         this.idRol = idRol;
         this.descRol = descRol;
         this.usuCrea = usuCrea;
         this.fecCrea2 = fecCrea2;
     }
 
-    public String getIdRol() {
+    public Integer getIdRol() {
         return idRol;
     }
 
-    public void setIdRol(String idRol) {
+    public void setIdRol(Integer idRol) {
         this.idRol = idRol;
     }
 
@@ -113,6 +120,14 @@ public class SclRol implements Serializable {
         this.fecModi2 = fecModi2;
     }
 
+    public List<SclOpcionmenu> getSclOpcionmenuList() {
+        return sclOpcionmenuList;
+    }
+
+    public void setSclOpcionmenuList(List<SclOpcionmenu> sclOpcionmenuList) {
+        this.sclOpcionmenuList = sclOpcionmenuList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -135,7 +150,7 @@ public class SclRol implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclRol[ idRol=" + idRol + " ]";
+        return "persistencialabclinico.entities.SclRol[ idRol=" + idRol + " ]";
     }
     
 }

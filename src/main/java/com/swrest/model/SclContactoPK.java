@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
@@ -17,7 +16,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class SclContactoPK implements Serializable {
-	
+
     @Basic(optional = false)
     @Column(name = "id_tipocontacto", nullable = false)
     private int idTipocontacto;
@@ -91,7 +90,7 @@ public class SclContactoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclContactoPK[ idTipocontacto=" + idTipocontacto + ", idPaciente=" + idPaciente + ", idContacto=" + idContacto + " ]";
+        return "persistencialabclinico.entities.SclContactoPK[ idTipocontacto=" + idTipocontacto + ", idPaciente=" + idPaciente + ", idContacto=" + idContacto + " ]";
     }
     
 }

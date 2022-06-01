@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
@@ -13,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,7 +26,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_clasificacion_anexo", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_clasificacion_anexo", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_clasanexo"})})
 @NamedQueries({
     @NamedQuery(name = "SclClasificacionAnexo.findAll", query = "SELECT s FROM SclClasificacionAnexo s")})
@@ -33,6 +34,7 @@ public class SclClasificacionAnexo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_clasanexo", nullable = false)
     private Integer idClasanexo;
@@ -100,7 +102,7 @@ public class SclClasificacionAnexo implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclClasificacionAnexo[ idClasanexo=" + idClasanexo + " ]";
+        return "persistencialabclinico.entities.SclClasificacionAnexo[ idClasanexo=" + idClasanexo + " ]";
     }
     
 }

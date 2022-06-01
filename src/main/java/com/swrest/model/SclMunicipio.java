@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -28,7 +26,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_municipio", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_municipio", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_pais", "id_depto", "id_municipio"})})
 @NamedQueries({
     @NamedQuery(name = "SclMunicipio.findAll", query = "SELECT s FROM SclMunicipio s")})
@@ -40,16 +38,10 @@ public class SclMunicipio implements Serializable {
     @Basic(optional = false)
     @Column(name = "nom_municipio", nullable = false, length = 35)
     private String nomMunicipio;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclMunicipio", fetch = FetchType.LAZY)
-    private List<SclHechoSangre> sclHechoSangreList;
     @OneToMany(mappedBy = "sclMunicipio", fetch = FetchType.LAZY)
     private List<SclPaciente> sclPacienteList;
     @OneToMany(mappedBy = "sclMunicipio", fetch = FetchType.LAZY)
     private List<SclOrdendeexamen> sclOrdendeexamenList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclMunicipio", fetch = FetchType.LAZY)
-    private List<SclHechosArea> sclHechosAreaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclMunicipio", fetch = FetchType.LAZY)
-    private List<SclHechoEpidemiologia> sclHechoEpidemiologiaList;
     @JoinColumns({
         @JoinColumn(name = "id_pais", referencedColumnName = "id_pais", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "id_depto", referencedColumnName = "id_depto", nullable = false, insertable = false, updatable = false)})
@@ -88,14 +80,6 @@ public class SclMunicipio implements Serializable {
         this.nomMunicipio = nomMunicipio;
     }
 
-    public List<SclHechoSangre> getSclHechoSangreList() {
-        return sclHechoSangreList;
-    }
-
-    public void setSclHechoSangreList(List<SclHechoSangre> sclHechoSangreList) {
-        this.sclHechoSangreList = sclHechoSangreList;
-    }
-
     public List<SclPaciente> getSclPacienteList() {
         return sclPacienteList;
     }
@@ -110,22 +94,6 @@ public class SclMunicipio implements Serializable {
 
     public void setSclOrdendeexamenList(List<SclOrdendeexamen> sclOrdendeexamenList) {
         this.sclOrdendeexamenList = sclOrdendeexamenList;
-    }
-
-    public List<SclHechosArea> getSclHechosAreaList() {
-        return sclHechosAreaList;
-    }
-
-    public void setSclHechosAreaList(List<SclHechosArea> sclHechosAreaList) {
-        this.sclHechosAreaList = sclHechosAreaList;
-    }
-
-    public List<SclHechoEpidemiologia> getSclHechoEpidemiologiaList() {
-        return sclHechoEpidemiologiaList;
-    }
-
-    public void setSclHechoEpidemiologiaList(List<SclHechoEpidemiologia> sclHechoEpidemiologiaList) {
-        this.sclHechoEpidemiologiaList = sclHechoEpidemiologiaList;
     }
 
     public SclDepartamento getSclDepartamento() {
@@ -158,7 +126,7 @@ public class SclMunicipio implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclMunicipio[ sclMunicipioPK=" + sclMunicipioPK + " ]";
+        return "persistencialabclinico.entities.SclMunicipio[ sclMunicipioPK=" + sclMunicipioPK + " ]";
     }
     
 }

@@ -62,14 +62,9 @@ public class SclExamenquimicaclinica implements Serializable {
     @Column(name = "fec_modi")
     @Temporal(TemporalType.DATE)
     private Date fecModi;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private SclInfoprofecional idUsuario;
     @JoinColumn(name = "id_ordenexamen", referencedColumnName = "id_ordenexamen", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclOrdendeexamen sclOrdendeexamen;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclExamenquimicaclinica", fetch = FetchType.LAZY)
-    private List<SclHechoEpidemiologia> sclHechoEpidemiologiaList;
 
     public SclExamenquimicaclinica() {
     }
@@ -161,28 +156,12 @@ public class SclExamenquimicaclinica implements Serializable {
         this.fecModi = fecModi;
     }
 
-    public SclInfoprofecional getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(SclInfoprofecional idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public SclOrdendeexamen getSclOrdendeexamen() {
         return sclOrdendeexamen;
     }
 
     public void setSclOrdendeexamen(SclOrdendeexamen sclOrdendeexamen) {
         this.sclOrdendeexamen = sclOrdendeexamen;
-    }
-
-    public List<SclHechoEpidemiologia> getSclHechoEpidemiologiaList() {
-        return sclHechoEpidemiologiaList;
-    }
-
-    public void setSclHechoEpidemiologiaList(List<SclHechoEpidemiologia> sclHechoEpidemiologiaList) {
-        this.sclHechoEpidemiologiaList = sclHechoEpidemiologiaList;
     }
 
     @Override

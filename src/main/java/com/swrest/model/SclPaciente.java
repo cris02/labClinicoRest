@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
@@ -14,6 +13,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -31,7 +32,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_paciente", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_paciente", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_paciente"})})
 @NamedQueries({
     @NamedQuery(name = "SclPaciente.findAll", query = "SELECT s FROM SclPaciente s")})
@@ -39,6 +40,7 @@ public class SclPaciente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_paciente", nullable = false)
     private Integer idPaciente;
@@ -63,22 +65,27 @@ public class SclPaciente implements Serializable {
     @Basic(optional = false)
     @Column(name = "tel_paciente", nullable = false, length = 8)
     private String telPaciente;
-    @Basic(optional = false)
-    @Column(name = "estado_civil", nullable = false, length = 25)
+    @Column(name = "estado_civil", length = 25)
     private String estadoCivil;
-    @Basic(optional = false)
-    @Column(name = "direccion", nullable = false, length = 50)
-    private String direccion;
-    @Basic(optional = false)
-    @Column(name = "nom_respondable", nullable = false, length = 50)
+    @Column(name = "casadepto", length = 50)
+    private String casadepto;
+    @Column(name = "pjesenda", length = 50)
+    private String pjesenda;
+    @Column(name = "colbarrio", length = 50)
+    private String colbarrio;
+    @Column(name = "calleav", length = 25)
+    private String calleav;
+    @Column(name = "detalledireccion", length = 50)
+    private String detalledireccion;
+    @Column(name = "nom_respondable", length = 50)
     private String nomRespondable;
-    @Basic(optional = false)
-    @Column(name = "tel_responsable", nullable = false, length = 8)
+    @Column(name = "tel_responsable", length = 8)
     private String telResponsable;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPaciente", fetch = FetchType.LAZY)
-    private List<SclHechoSangre> sclHechoSangreList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente", fetch = FetchType.LAZY)
     private List<SclCita> sclCitaList;
+    @JoinColumn(name = "id_clinica", referencedColumnName = "id_clinica", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private SclClinica idClinica;
     @JoinColumns({
         @JoinColumn(name = "id_pais", referencedColumnName = "id_pais"),
         @JoinColumn(name = "id_depto", referencedColumnName = "id_depto"),
@@ -88,10 +95,6 @@ public class SclPaciente implements Serializable {
     @JoinColumn(name = "id_tipo_documento", referencedColumnName = "id_tipo_documento", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclTipoDocumento idTipoDocumento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPaciente", fetch = FetchType.LAZY)
-    private List<SclHechosArea> sclHechosAreaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPaciente", fetch = FetchType.LAZY)
-    private List<SclHechoEpidemiologia> sclHechoEpidemiologiaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPaciente", fetch = FetchType.LAZY)
     private List<SclContacto> sclContactoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPaciente", fetch = FetchType.LAZY)
@@ -104,7 +107,7 @@ public class SclPaciente implements Serializable {
         this.idPaciente = idPaciente;
     }
 
-    public SclPaciente(Integer idPaciente, String numDocumento, String nomPaciente, String apePaciente, boolean genero, Date fechanacimiento, String telPaciente, String estadoCivil, String direccion, String nomRespondable, String telResponsable) {
+    public SclPaciente(Integer idPaciente, String numDocumento, String nomPaciente, String apePaciente, boolean genero, Date fechanacimiento, String telPaciente) {
         this.idPaciente = idPaciente;
         this.numDocumento = numDocumento;
         this.nomPaciente = nomPaciente;
@@ -112,10 +115,6 @@ public class SclPaciente implements Serializable {
         this.genero = genero;
         this.fechanacimiento = fechanacimiento;
         this.telPaciente = telPaciente;
-        this.estadoCivil = estadoCivil;
-        this.direccion = direccion;
-        this.nomRespondable = nomRespondable;
-        this.telResponsable = telResponsable;
     }
 
     public Integer getIdPaciente() {
@@ -190,12 +189,44 @@ public class SclPaciente implements Serializable {
         this.estadoCivil = estadoCivil;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getCasadepto() {
+        return casadepto;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setCasadepto(String casadepto) {
+        this.casadepto = casadepto;
+    }
+
+    public String getPjesenda() {
+        return pjesenda;
+    }
+
+    public void setPjesenda(String pjesenda) {
+        this.pjesenda = pjesenda;
+    }
+
+    public String getColbarrio() {
+        return colbarrio;
+    }
+
+    public void setColbarrio(String colbarrio) {
+        this.colbarrio = colbarrio;
+    }
+
+    public String getCalleav() {
+        return calleav;
+    }
+
+    public void setCalleav(String calleav) {
+        this.calleav = calleav;
+    }
+
+    public String getDetalledireccion() {
+        return detalledireccion;
+    }
+
+    public void setDetalledireccion(String detalledireccion) {
+        this.detalledireccion = detalledireccion;
     }
 
     public String getNomRespondable() {
@@ -214,20 +245,20 @@ public class SclPaciente implements Serializable {
         this.telResponsable = telResponsable;
     }
 
-    public List<SclHechoSangre> getSclHechoSangreList() {
-        return sclHechoSangreList;
-    }
-
-    public void setSclHechoSangreList(List<SclHechoSangre> sclHechoSangreList) {
-        this.sclHechoSangreList = sclHechoSangreList;
-    }
-
     public List<SclCita> getSclCitaList() {
         return sclCitaList;
     }
 
     public void setSclCitaList(List<SclCita> sclCitaList) {
         this.sclCitaList = sclCitaList;
+    }
+
+    public SclClinica getIdClinica() {
+        return idClinica;
+    }
+
+    public void setIdClinica(SclClinica idClinica) {
+        this.idClinica = idClinica;
     }
 
     public SclMunicipio getSclMunicipio() {
@@ -244,22 +275,6 @@ public class SclPaciente implements Serializable {
 
     public void setIdTipoDocumento(SclTipoDocumento idTipoDocumento) {
         this.idTipoDocumento = idTipoDocumento;
-    }
-
-    public List<SclHechosArea> getSclHechosAreaList() {
-        return sclHechosAreaList;
-    }
-
-    public void setSclHechosAreaList(List<SclHechosArea> sclHechosAreaList) {
-        this.sclHechosAreaList = sclHechosAreaList;
-    }
-
-    public List<SclHechoEpidemiologia> getSclHechoEpidemiologiaList() {
-        return sclHechoEpidemiologiaList;
-    }
-
-    public void setSclHechoEpidemiologiaList(List<SclHechoEpidemiologia> sclHechoEpidemiologiaList) {
-        this.sclHechoEpidemiologiaList = sclHechoEpidemiologiaList;
     }
 
     public List<SclContacto> getSclContactoList() {
@@ -300,7 +315,7 @@ public class SclPaciente implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclPaciente[ idPaciente=" + idPaciente + " ]";
+        return "persistencialabclinico.entities.SclPaciente[ idPaciente=" + idPaciente + " ]";
     }
     
 }

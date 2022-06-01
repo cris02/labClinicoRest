@@ -7,12 +7,16 @@ package com.swrest.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -21,7 +25,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_tipo_documento", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_tipo_documento", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_tipo_documento"})})
 @NamedQueries({
     @NamedQuery(name = "SclTipoDocumento.findAll", query = "SELECT s FROM SclTipoDocumento s")})
@@ -36,6 +40,8 @@ public class SclTipoDocumento implements Serializable {
     @Basic(optional = false)
     @Column(name = "documento", nullable = false, length = 50)
     private String documento;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoDocumento", fetch = FetchType.LAZY)
+    private List<SclPaciente> sclPacienteList;
 
     public SclTipoDocumento() {
     }
@@ -65,6 +71,14 @@ public class SclTipoDocumento implements Serializable {
         this.documento = documento;
     }
 
+    public List<SclPaciente> getSclPacienteList() {
+        return sclPacienteList;
+    }
+
+    public void setSclPacienteList(List<SclPaciente> sclPacienteList) {
+        this.sclPacienteList = sclPacienteList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -87,7 +101,7 @@ public class SclTipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.persistencia.SclTipoDocumento[ idTipoDocumento=" + idTipoDocumento + " ]";
+        return "persistencialabclinico.entities.SclTipoDocumento[ idTipoDocumento=" + idTipoDocumento + " ]";
     }
     
 }

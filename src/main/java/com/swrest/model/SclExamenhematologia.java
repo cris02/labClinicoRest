@@ -102,11 +102,6 @@ public class SclExamenhematologia implements Serializable {
     @Column(name = "fec_modi")
     @Temporal(TemporalType.DATE)
     private Date fecModi;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclExamenhematologia", fetch = FetchType.LAZY)
-    private List<SclHechoSangre> sclHechoSangreList;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private SclInfoprofecional idUsuario;
     @JoinColumn(name = "id_ordenexamen", referencedColumnName = "id_ordenexamen", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclOrdendeexamen sclOrdendeexamen;
@@ -368,22 +363,6 @@ public class SclExamenhematologia implements Serializable {
 
     public void setFecModi(Date fecModi) {
         this.fecModi = fecModi;
-    }
-
-    public List<SclHechoSangre> getSclHechoSangreList() {
-        return sclHechoSangreList;
-    }
-
-    public void setSclHechoSangreList(List<SclHechoSangre> sclHechoSangreList) {
-        this.sclHechoSangreList = sclHechoSangreList;
-    }
-
-    public SclInfoprofecional getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(SclInfoprofecional idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public SclOrdendeexamen getSclOrdendeexamen() {

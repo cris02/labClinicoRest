@@ -1,27 +1,28 @@
 package com.swrest.servicio;
 
-import com.swrest.model.SclDepartamento;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.swrest.model.SclDepartamento;
 import com.swrest.repositorio.DepartamentoRepository;
 
 @Service
 public class departamentoserv
 {
     @Autowired
-    private DepartamentoRepository paisrepositorio;
+    private DepartamentoRepository repo;
     
-    public SclDepartamento insertar(SclDepartamento a_obj)
-    { return paisrepositorio.save(a_obj); }
+    public SclDepartamento insertar(SclDepartamento d)
+    { return repo.save(d); }
     
-    public SclDepartamento actualizar(SclDepartamento a_obj)
-    { return paisrepositorio.save(a_obj); }
+    public SclDepartamento actualizar(SclDepartamento d)
+    { return repo.save(d); }
     
     public List<SclDepartamento> listar()
-    { return paisrepositorio.findAll(); }
+    { return repo.findAll(); }
     
-    public void eliminar(SclDepartamento a_obj)
-    { paisrepositorio.delete(a_obj); }
+    public void eliminar(SclDepartamento d)
+    { repo.delete(d); }
 }
 

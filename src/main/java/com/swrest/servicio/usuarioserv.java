@@ -1,9 +1,10 @@
 package com.swrest.servicio;
 
-import com.swrest.model.SclUsuario;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.swrest.model.SclUsuario;
 import com.swrest.repositorio.UsuarioRepository;
 
 @Service
@@ -46,7 +47,7 @@ public class usuarioserv
     {
     	try {
     		if(usuariorepositorio.existsById(usu.getIdUsuario()))
-        		usuariorepositorio.delete(usu); 
+        		usuariorepositorio.deleteById(usu.getIdUsuario()); 
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

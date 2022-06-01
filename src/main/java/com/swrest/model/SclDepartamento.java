@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
@@ -27,7 +26,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_departamento", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_departamento", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_pais", "id_depto"})})
 @NamedQueries({
     @NamedQuery(name = "SclDepartamento.findAll", query = "SELECT s FROM SclDepartamento s")})
@@ -39,9 +38,6 @@ public class SclDepartamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "nom_depto", nullable = false, length = 25)
     private String nomDepto;
-    @Basic(optional = false)
-    @Column(name = "cod_iso", nullable = false, length = 3)
-    private String codIso;
     @JoinColumn(name = "id_pais", referencedColumnName = "id_pais", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclPais sclPais;
@@ -55,10 +51,9 @@ public class SclDepartamento implements Serializable {
         this.sclDepartamentoPK = sclDepartamentoPK;
     }
 
-    public SclDepartamento(SclDepartamentoPK sclDepartamentoPK, String nomDepto, String codIso) {
+    public SclDepartamento(SclDepartamentoPK sclDepartamentoPK, String nomDepto) {
         this.sclDepartamentoPK = sclDepartamentoPK;
         this.nomDepto = nomDepto;
-        this.codIso = codIso;
     }
 
     public SclDepartamento(String idPais, int idDepto) {
@@ -79,14 +74,6 @@ public class SclDepartamento implements Serializable {
 
     public void setNomDepto(String nomDepto) {
         this.nomDepto = nomDepto;
-    }
-
-    public String getCodIso() {
-        return codIso;
-    }
-
-    public void setCodIso(String codIso) {
-        this.codIso = codIso;
     }
 
     public SclPais getSclPais() {
@@ -127,7 +114,7 @@ public class SclDepartamento implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclDepartamento[ sclDepartamentoPK=" + sclDepartamentoPK + " ]";
+        return "persistencialabclinico.entities.SclDepartamento[ sclDepartamentoPK=" + sclDepartamentoPK + " ]";
     }
     
 }
