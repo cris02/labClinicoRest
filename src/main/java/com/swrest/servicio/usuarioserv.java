@@ -2,6 +2,7 @@ package com.swrest.servicio;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.swrest.model.SclUsuario;
@@ -13,19 +14,33 @@ public class usuarioserv
     @Autowired
     private UsuarioRepository usuariorepositorio;
     
-    public SclUsuario insertar(SclUsuario usu)
-    { return usuariorepositorio.save(usu); }
-    
-    public SclUsuario actualizar(SclUsuario usu)
-    { 	//verifica si el id existe
-    	if(usuariorepositorio.existsById(usu.getIdUsuario()))
-    		return usuariorepositorio.save(usu);
-    	else
-    		return null;
-    }
     
     public List<SclUsuario> listar()
     { return usuariorepositorio.findAll(); }
+    
+    
+    public SclUsuario insertar(SclUsuario usu)
+    {	return usuariorepositorio.save(this.encriptar(usu));	}
+    
+    
+	//encriptador de contraseña
+	public SclUsuario encriptar(SclUsuario usu) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodedPass = encoder.encode(usu.getClave());
+		usu.setClave(encodedPass);
+		
+		return usu;
+	}
+	
+    
+    public SclUsuario actualizar(SclUsuario usu) { 	
+    	//verifica si el id existe
+    	if(usuariorepositorio.existsById(usu.getIdUsuario())) {
+    		return usuariorepositorio.save(this.encriptar(usu));
+    	}
+    	else return null;
+    }
+    
     
 	public SclUsuario darDeBaja(SclUsuario usu) 
 	{
@@ -39,10 +54,9 @@ public class usuarioserv
 	    	usuariorepositorio.save(user);
 	    	
 	    	return user;
-		} else 
-			return null;
+		} else return null;
     }
-    
+
     public void eliminar(SclUsuario usu)
     {
     	try {
