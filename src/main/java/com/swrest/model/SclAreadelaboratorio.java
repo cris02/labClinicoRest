@@ -27,7 +27,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "scl_areadelaboratorio", catalog = "labclinicodb", schema = "UESBAD", uniqueConstraints = {
+@Table(name = "scl_areadelaboratorio", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_area"})})
 @NamedQueries({
     @NamedQuery(name = "SclAreadelaboratorio.findAll", query = "SELECT s FROM SclAreadelaboratorio s")})
