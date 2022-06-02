@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,8 @@ import com.swrest.servicio.pacienteserv;
 @RequestMapping("/paciente")
 public class pacientecontrolador {
 	
-	@Autowired private pacienteserv servicio;
+	@Autowired 
+	private pacienteserv servicio;
 	
 	@GetMapping("/all")
 	public List<SclPaciente> listar() {
@@ -27,17 +29,17 @@ public class pacientecontrolador {
 	}
 	
 	@PostMapping("/save")
-	public void insertar(SclPaciente pac) {
+	public void insertar(@RequestBody SclPaciente pac) {
 		servicio.insertar(pac);
 	}
 	
 	@PutMapping("/upd")
-	public void actualizar(SclPaciente pac) {
+	public void actualizar(@RequestBody SclPaciente pac) {
 		servicio.actualizar(pac);
 	}
 	
 	@DeleteMapping("/del")
-	public void eliminar(SclPaciente pac) {
+	public void eliminar(@RequestBody SclPaciente pac) {
 		servicio.eliminar(pac);
 	}
 }

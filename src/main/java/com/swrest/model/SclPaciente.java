@@ -107,7 +107,13 @@ public class SclPaciente implements Serializable {
         this.idPaciente = idPaciente;
     }
 
-    public SclPaciente(Integer idPaciente, String numDocumento, String nomPaciente, String apePaciente, boolean genero, Date fechanacimiento, String telPaciente) {
+    public SclPaciente(Integer idPaciente, 
+    		String numDocumento, 
+    		String nomPaciente, 
+    		String apePaciente, 
+    		boolean genero, 
+    		Date fechanacimiento, 
+    		String telPaciente) {
         this.idPaciente = idPaciente;
         this.numDocumento = numDocumento;
         this.nomPaciente = nomPaciente;
@@ -307,7 +313,8 @@ public class SclPaciente implements Serializable {
             return false;
         }
         SclPaciente other = (SclPaciente) object;
-        if ((this.idPaciente == null && other.idPaciente != null) || (this.idPaciente != null && !this.idPaciente.equals(other.idPaciente))) {
+        if ((this.idPaciente == null && other.idPaciente != null) || 
+        		(this.idPaciente != null && !this.idPaciente.equals(other.idPaciente))) {
             return false;
         }
         return true;
