@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -29,7 +30,7 @@ public class usuariocontrolador
     public SclUsuario insertar(@RequestBody SclUsuario usu)
     { return usuarioservicio.insertar(usu); }
     
-    @PutMapping("/upt")
+    @PutMapping("/upd")
     public SclUsuario actualizar(@RequestBody SclUsuario usu)
     { return usuarioservicio.actualizar(usu); }
     
@@ -37,4 +38,9 @@ public class usuariocontrolador
     public SclUsuario darDeBaja(@RequestBody SclUsuario usu)
     { return usuarioservicio.darDeBaja(usu); }
     
+    
+    @GetMapping("/recuperar") //?id=
+    public SclUsuario sendMail(@RequestParam Integer id) {
+    	return usuarioservicio.generarClave(id);
+    }
 }
