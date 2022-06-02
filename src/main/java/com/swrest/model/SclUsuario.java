@@ -25,6 +25,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
 /**
  *
  * @author crist
@@ -76,6 +78,7 @@ public class SclUsuario implements Serializable {
     private Date fecModi;
     @ManyToMany(mappedBy = "sclUsuarioList", fetch = FetchType.LAZY)
     private List<SclAreadelaboratorio> sclAreadelaboratorioList;
+    @JsonIncludeProperties({"idClinica"})
     @JoinColumn(name = "id_clinica", referencedColumnName = "id_clinica", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclClinica idClinica;
