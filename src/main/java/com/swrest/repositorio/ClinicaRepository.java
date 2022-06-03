@@ -7,5 +7,5 @@ import com.swrest.model.SclClinica;
 
 @Repository
 public interface ClinicaRepository extends JpaRepository<SclClinica, Integer> {
-	
+
 }
