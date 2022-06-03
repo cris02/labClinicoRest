@@ -17,7 +17,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SclDepartamentoPK implements Serializable {
 
-    @Basic(optional = false)
+	private static final long serialVersionUID = 1L;
+	@Basic(optional = false)
     @Column(name = "id_pais", nullable = false, length = 3)
     private String idPais;
     @Basic(optional = false)
