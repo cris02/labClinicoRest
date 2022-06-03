@@ -12,9 +12,14 @@ public class pacienteserv
 {
     @Autowired
     private PacienteRepository pacienterepositorio;
+
+    public List<SclPaciente> listar()
+    { return pacienterepositorio.findAll(); }
+    
     
     public SclPaciente insertar(SclPaciente pac)
     {	return pacienterepositorio.save(pac);	}
+    
     
     public SclPaciente actualizar(SclPaciente pac)
     { 
@@ -24,8 +29,6 @@ public class pacienteserv
     		return null;
     }
     
-    public List<SclPaciente> listar()
-    { return pacienterepositorio.findAll(); }
     
     public void eliminar(SclPaciente pac)
     { 

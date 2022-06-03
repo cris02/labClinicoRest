@@ -24,22 +24,22 @@ public class usuariocontrolador
     
     @GetMapping("/all")
     public List<SclUsuario> listar()
-    { return usuarioservicio.listar(); }
+    { 	return usuarioservicio.listar(); 	}
     
     @PostMapping("/save")
-    public SclUsuario insertar(@RequestBody SclUsuario usu)
-    { return usuarioservicio.insertar(usu); }
+    public SclUsuario insertar(@RequestBody SclUsuario usu) 
+    { 	return usuarioservicio.insertar(usu);	}
     
     @PutMapping("/upd")
     public SclUsuario actualizar(@RequestBody SclUsuario usu)
-    { return usuarioservicio.actualizar(usu); }
+    { 	return usuarioservicio.actualizar(usu);	}
     
-    @PutMapping("/flag")
-    public SclUsuario darDeBaja(@RequestBody SclUsuario usu)
-    { return usuarioservicio.darDeBaja(usu); }
+    @GetMapping("/flag") //?id=
+    public SclUsuario darDeBaja(@RequestParam Integer id)
+    { return usuarioservicio.darDeBaja(id); }
     
     
-    @GetMapping("/recuperar") //?id=
+    @GetMapping("/send") //?id=
     public SclUsuario sendMail(@RequestParam Integer id) {
     	return usuarioservicio.generarClave(id);
     }

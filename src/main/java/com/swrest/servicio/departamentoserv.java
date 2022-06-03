@@ -13,14 +13,14 @@ public class departamentoserv
     @Autowired
     private DepartamentoRepository repo;
     
+    public List<SclDepartamento> listar()
+    { return repo.findAll(); }
+    
     public SclDepartamento insertar(SclDepartamento d)
     { return repo.save(d); }
     
     public SclDepartamento actualizar(SclDepartamento d)
     { return repo.save(d); }
-    
-    public List<SclDepartamento> listar()
-    { return repo.findAll(); }
     
     public void eliminar(SclDepartamento d)
     { repo.delete(d); }

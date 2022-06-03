@@ -22,7 +22,7 @@ public class paiscontrolador
     @Autowired
     private paisserv paisservicio;
     
-    @GetMapping
+    @GetMapping("/all")
     public List<SclPais> listar()
     { return paisservicio.listar(); }
     

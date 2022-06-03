@@ -7,7 +7,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
+
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,33 +32,38 @@ public class usuarioserv
     
     
     public SclUsuario insertar(SclUsuario usu) {
-    	return usuariorepositorio.save(this.encriptar(usu));
+    	String encodedPass = this.encriptarClave(usu.getClave());
+    	usu.setClave(encodedPass);
+    	
+    	return usuariorepositorio.save(usu);
     }
     
     
 	//encriptador de contraseña
-	public SclUsuario encriptar(SclUsuario usu) {
+	public String encriptarClave(String clave) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encodedPass = encoder.encode(usu.getClave());
-		usu.setClave(encodedPass);
+		String encodedPass = encoder.encode(clave);
 		
-		return usu;
+		return encodedPass;
 	}
 	
     
     public SclUsuario actualizar(SclUsuario usu) { 	
     	//verifica si el id existe
     	if(usuariorepositorio.existsById(usu.getIdUsuario())) {
-    		return usuariorepositorio.save(this.encriptar(usu));
+    		String encodedPass = this.encriptarClave(usu.getClave());
+        	usu.setClave(encodedPass);
+        	
+    		return usuariorepositorio.save(usu);
     	}
     	else return null;
     }
     
     
-	public SclUsuario darDeBaja(SclUsuario usu) 
+	public SclUsuario darDeBaja(Integer id) 
 	{
-		if(usuariorepositorio.existsById(usu.getIdUsuario())) {
-			SclUsuario user = usuariorepositorio.findById(usu.getIdUsuario()).get();
+		if(usuariorepositorio.existsById(id)) {
+			SclUsuario user = usuariorepositorio.findById(id).get();
 	    	if(user.getActivo() == true)
 	    		user.setActivo(false);
 	    	else
@@ -85,8 +90,9 @@ public class usuarioserv
     	if(usuariorepositorio.existsById(id)) {
 			SclUsuario user = usuariorepositorio.findById(id).get();
 			String otp = RandomString.make(8);
-			user.setClave(otp);
-			usuariorepositorio.save(this.encriptar(user));
+			String encodedPass = this.encriptarClave(otp);
+			user.setClave(encodedPass);
+			usuariorepositorio.save(user);
 			
 			try {
 				this.recuperarClave(user, otp);
@@ -103,18 +109,15 @@ public class usuarioserv
     
     //Envia correo de recuperacion
     public void recuperarClave(SclUsuario user, String otp) throws UnsupportedEncodingException, MessagingException {
+    	MimeMessage mensaje = mailsender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(mensaje);
+    	helper.setFrom("mr14015@clases.edu.sv","Laboratorio Clínico");
+    	helper.setTo(user.getCorreo());
+    	helper.setSubject("Recuperación de clave de acceso");
+    	helper.setText("<p>Usted ha solicitado recuperación de clave de acceso.<br>" +
+    	"Su nueva clave de acceso es: <b>"+ otp +"</b></p>", true);
     	
-    	if(usuariorepositorio.existsById(user.getIdUsuario())) {
-    		MimeMessage mensaje = mailsender.createMimeMessage();
-    		MimeMessageHelper helper = new MimeMessageHelper(mensaje);
-        	helper.setFrom("mr14015@clases.edu.sv","Laboratorio Clínico");
-        	helper.setTo(user.getCorreo());
-        	helper.setSubject("Recuperación de clave de acceso");
-        	helper.setText("<p>Usted ha solicitado recuperación de clave de acceso.<br>" +
-        	"Su nueva clave de acceso es: <b>"+ otp +"</b></p>", true);
-        	
-        	mailsender.send(mensaje);
-    	}
+    	mailsender.send(mensaje);
     }
 }
 
