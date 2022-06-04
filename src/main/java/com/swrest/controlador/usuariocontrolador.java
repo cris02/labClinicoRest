@@ -37,10 +37,5 @@ public class usuariocontrolador
     @GetMapping("/flag") //?id=
     public SclUsuario darDeBaja(@RequestParam Integer id)
     { return usuarioservicio.darDeBaja(id); }
-    
-    
-    @GetMapping("/send") //?id=
-    public SclUsuario sendMail(@RequestParam Integer id) {
-    	return usuarioservicio.generarClave(id);
-    }
+
 }
