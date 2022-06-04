@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
@@ -89,6 +88,9 @@ public class SclExamencoprologia implements Serializable {
     @JoinColumn(name = "id_ordenexamen", referencedColumnName = "id_ordenexamen", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclOrdendeexamen sclOrdendeexamen;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private SclUsuario idUsuario;
 
     public SclExamencoprologia() {
     }
@@ -275,6 +277,14 @@ public class SclExamencoprologia implements Serializable {
         this.sclOrdendeexamen = sclOrdendeexamen;
     }
 
+    public SclUsuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(SclUsuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -297,7 +307,7 @@ public class SclExamencoprologia implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclExamencoprologia[ sclExamencoprologiaPK=" + sclExamencoprologiaPK + " ]";
+        return "persistencialabclinico.entities.SclExamencoprologia[ sclExamencoprologiaPK=" + sclExamencoprologiaPK + " ]";
     }
     
 }

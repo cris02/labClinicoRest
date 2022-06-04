@@ -21,8 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import com.fasterxml.jackson.annotation.JsonIncludeProperties;
-
 /**
  *
  * @author crist
@@ -42,7 +40,6 @@ public class SclDepartamento implements Serializable {
     private String nomDepto;
     @JoinColumn(name = "id_pais", referencedColumnName = "id_pais", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JsonIncludeProperties({"idPais"})
     private SclPais sclPais;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclDepartamento", fetch = FetchType.LAZY)
     private List<SclMunicipio> sclMunicipioList;

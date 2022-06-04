@@ -15,6 +15,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -55,6 +57,11 @@ public class SclRol implements Serializable {
     @Column(name = "fec_modi2")
     @Temporal(TemporalType.DATE)
     private Date fecModi2;
+    @JoinTable(name = "scl_usuarioporrol", joinColumns = {
+        @JoinColumn(name = "id_rol", referencedColumnName = "id_rol", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<SclUsuario> sclUsuarioList;
     @ManyToMany(mappedBy = "sclRolList", fetch = FetchType.LAZY)
     private List<SclOpcionmenu> sclOpcionmenuList;
 
@@ -118,6 +125,14 @@ public class SclRol implements Serializable {
 
     public void setFecModi2(Date fecModi2) {
         this.fecModi2 = fecModi2;
+    }
+
+    public List<SclUsuario> getSclUsuarioList() {
+        return sclUsuarioList;
+    }
+
+    public void setSclUsuarioList(List<SclUsuario> sclUsuarioList) {
+        this.sclUsuarioList = sclUsuarioList;
     }
 
     public List<SclOpcionmenu> getSclOpcionmenuList() {

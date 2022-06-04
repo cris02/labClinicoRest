@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
@@ -31,7 +30,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "examenquimicaclinica", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_examenquimicaclinica", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_ordenexamen", "id_quimicaclinica"})})
 @NamedQueries({
     @NamedQuery(name = "SclExamenquimicaclinica.findAll", query = "SELECT s FROM SclExamenquimicaclinica s")})
@@ -65,6 +64,11 @@ public class SclExamenquimicaclinica implements Serializable {
     @JoinColumn(name = "id_ordenexamen", referencedColumnName = "id_ordenexamen", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclOrdendeexamen sclOrdendeexamen;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private SclUsuario idUsuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclExamenquimicaclinica", fetch = FetchType.LAZY)
+    private List<SclHechoEpidemiologia> sclHechoEpidemiologiaList;
 
     public SclExamenquimicaclinica() {
     }
@@ -164,6 +168,22 @@ public class SclExamenquimicaclinica implements Serializable {
         this.sclOrdendeexamen = sclOrdendeexamen;
     }
 
+    public SclUsuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(SclUsuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public List<SclHechoEpidemiologia> getSclHechoEpidemiologiaList() {
+        return sclHechoEpidemiologiaList;
+    }
+
+    public void setSclHechoEpidemiologiaList(List<SclHechoEpidemiologia> sclHechoEpidemiologiaList) {
+        this.sclHechoEpidemiologiaList = sclHechoEpidemiologiaList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -186,7 +206,7 @@ public class SclExamenquimicaclinica implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclExamenquimicaclinica[ sclExamenquimicaclinicaPK=" + sclExamenquimicaclinicaPK + " ]";
+        return "persistencialabclinico.entities.SclExamenquimicaclinica[ sclExamenquimicaclinicaPK=" + sclExamenquimicaclinicaPK + " ]";
     }
     
 }

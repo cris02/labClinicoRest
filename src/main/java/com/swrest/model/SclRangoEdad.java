@@ -6,14 +6,18 @@
 package com.swrest.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -41,6 +45,10 @@ public class SclRangoEdad implements Serializable {
     private Integer valInferior;
     @Column(name = "val_superior")
     private Integer valSuperior;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclRangoEdad", fetch = FetchType.LAZY)
+    private List<SclHechoSangre> sclHechoSangreList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclRangoEdad", fetch = FetchType.LAZY)
+    private List<SclHechoEpidemiologia> sclHechoEpidemiologiaList;
 
     public SclRangoEdad() {
     }
@@ -84,6 +92,22 @@ public class SclRangoEdad implements Serializable {
 
     public void setValSuperior(Integer valSuperior) {
         this.valSuperior = valSuperior;
+    }
+
+    public List<SclHechoSangre> getSclHechoSangreList() {
+        return sclHechoSangreList;
+    }
+
+    public void setSclHechoSangreList(List<SclHechoSangre> sclHechoSangreList) {
+        this.sclHechoSangreList = sclHechoSangreList;
+    }
+
+    public List<SclHechoEpidemiologia> getSclHechoEpidemiologiaList() {
+        return sclHechoEpidemiologiaList;
+    }
+
+    public void setSclHechoEpidemiologiaList(List<SclHechoEpidemiologia> sclHechoEpidemiologiaList) {
+        this.sclHechoEpidemiologiaList = sclHechoEpidemiologiaList;
     }
 
     @Override

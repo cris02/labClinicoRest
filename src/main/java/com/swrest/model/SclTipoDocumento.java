@@ -6,13 +6,13 @@
 package com.swrest.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,34 +32,34 @@ import javax.persistence.UniqueConstraint;
 public class SclTipoDocumento implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_tipo_documento", nullable = false, precision = 131089, scale = 0)
-    private BigDecimal idTipoDocumento;
+    @Column(name = "id_tipo_documento", nullable = false)
+    private Integer idTipoDocumento;
     @Basic(optional = false)
-    @Column(name = "documento", nullable = false, length = 50)
+    @Column(name = "documento", nullable = false, length = 25)
     private String documento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoDocumento", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idTipoDocumento", fetch = FetchType.LAZY)
     private List<SclPaciente> sclPacienteList;
 
     public SclTipoDocumento() {
     }
 
-    public SclTipoDocumento(BigDecimal idTipoDocumento) {
+    public SclTipoDocumento(Integer idTipoDocumento) {
         this.idTipoDocumento = idTipoDocumento;
     }
 
-    public SclTipoDocumento(BigDecimal idTipoDocumento, String documento) {
+    public SclTipoDocumento(Integer idTipoDocumento, String documento) {
         this.idTipoDocumento = idTipoDocumento;
         this.documento = documento;
     }
 
-    public BigDecimal getIdTipoDocumento() {
+    public Integer getIdTipoDocumento() {
         return idTipoDocumento;
     }
 
-    public void setIdTipoDocumento(BigDecimal idTipoDocumento) {
+    public void setIdTipoDocumento(Integer idTipoDocumento) {
         this.idTipoDocumento = idTipoDocumento;
     }
 

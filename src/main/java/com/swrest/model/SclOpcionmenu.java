@@ -28,120 +28,129 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "scl_opcionmenu", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "id_opci" }) })
-@NamedQueries({ @NamedQuery(name = "SclOpcionmenu.findAll", query = "SELECT s FROM SclOpcionmenu s") })
-
+    @UniqueConstraint(columnNames = {"id_opcion"})})
+@NamedQueries({
+    @NamedQuery(name = "SclOpcionmenu.findAll", query = "SELECT s FROM SclOpcionmenu s")})
 public class SclOpcionmenu implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "id_opci", nullable = false)
-	private Integer idOpci;
-	@Basic(optional = false)
-	@Column(name = "nom_opcion", nullable = false, length = 30)
-	private String nomOpcion;
-	@Basic(optional = false)
-	@Column(name = "url", nullable = false, length = 60)
-	private String url;
-	@Basic(optional = false)
-	@Column(name = "icon", nullable = false, length = 60)
-	private String icon;
-	@Column(name = "parametros", length = 60)
-	private String parametros;
-	@JoinTable(name = "scl_opciondemenupor_rol", joinColumns = {
-			@JoinColumn(name = "id_opci", referencedColumnName = "id_opci", nullable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "id_rol", referencedColumnName = "id_rol", nullable = false) })
-	@ManyToMany(fetch = FetchType.LAZY)
-	private List<SclRol> sclRolList;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_opcion", nullable = false)
+    private Integer idOpcion;
+    @Column(name = "id_opcionpadre", length = 30)
+    private String idOpcionpadre;
+    @Basic(optional = false)
+    @Column(name = "nom_opcion", nullable = false, length = 30)
+    private String nomOpcion;
+    @Basic(optional = false)
+    @Column(name = "url", nullable = false, length = 60)
+    private String url;
+    @Basic(optional = false)
+    @Column(name = "icon", nullable = false, length = 60)
+    private String icon;
+    @Column(name = "parametros", length = 60)
+    private String parametros;
+    @JoinTable(name = "scl_opciondemenupor_rol", joinColumns = {
+        @JoinColumn(name = "id_opcion", referencedColumnName = "id_opcion", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "id_rol", referencedColumnName = "id_rol", nullable = false)})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<SclRol> sclRolList;
 
-	public SclOpcionmenu() {
+    public SclOpcionmenu() {
     }
 
-	public SclOpcionmenu(Integer idOpci) {
-        this.idOpci = idOpci;
+    public SclOpcionmenu(Integer idOpcion) {
+        this.idOpcion = idOpcion;
     }
 
-	public SclOpcionmenu(Integer idOpci, String nomOpcion, String url, String icon) {
-        this.idOpci = idOpci;
+    public SclOpcionmenu(Integer idOpcion, String nomOpcion, String url, String icon) {
+        this.idOpcion = idOpcion;
         this.nomOpcion = nomOpcion;
         this.url = url;
         this.icon = icon;
     }
 
-	public Integer getIdOpci() {
-		return idOpci;
-	}
+    public Integer getIdOpcion() {
+        return idOpcion;
+    }
 
-	public void setIdOpci(Integer idOpci) {
-		this.idOpci = idOpci;
-	}
+    public void setIdOpcion(Integer idOpcion) {
+        this.idOpcion = idOpcion;
+    }
 
-	public String getNomOpcion() {
-		return nomOpcion;
-	}
+    public String getIdOpcionpadre() {
+        return idOpcionpadre;
+    }
 
-	public void setNomOpcion(String nomOpcion) {
-		this.nomOpcion = nomOpcion;
-	}
+    public void setIdOpcionpadre(String idOpcionpadre) {
+        this.idOpcionpadre = idOpcionpadre;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getNomOpcion() {
+        return nomOpcion;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setNomOpcion(String nomOpcion) {
+        this.nomOpcion = nomOpcion;
+    }
 
-	public String getIcon() {
-		return icon;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public String getParametros() {
-		return parametros;
-	}
+    public String getIcon() {
+        return icon;
+    }
 
-	public void setParametros(String parametros) {
-		this.parametros = parametros;
-	}
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
-	public List<SclRol> getSclRolList() {
-		return sclRolList;
-	}
+    public String getParametros() {
+        return parametros;
+    }
 
-	public void setSclRolList(List<SclRol> sclRolList) {
-		this.sclRolList = sclRolList;
-	}
+    public void setParametros(String parametros) {
+        this.parametros = parametros;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (idOpci != null ? idOpci.hashCode() : 0);
-		return hash;
-	}
+    public List<SclRol> getSclRolList() {
+        return sclRolList;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof SclOpcionmenu)) {
-			return false;
-		}
-		SclOpcionmenu other = (SclOpcionmenu) object;
-		if ((this.idOpci == null && other.idOpci != null)
-				|| (this.idOpci != null && !this.idOpci.equals(other.idOpci))) {
-			return false;
-		}
-		return true;
-	}
+    public void setSclRolList(List<SclRol> sclRolList) {
+        this.sclRolList = sclRolList;
+    }
 
-	@Override
-	public String toString() {
-		return "persistencialabclinico.entities.SclOpcionmenu[ idOpci=" + idOpci + " ]";
-	}
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idOpcion != null ? idOpcion.hashCode() : 0);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof SclOpcionmenu)) {
+            return false;
+        }
+        SclOpcionmenu other = (SclOpcionmenu) object;
+        if ((this.idOpcion == null && other.idOpcion != null) || (this.idOpcion != null && !this.idOpcion.equals(other.idOpcion))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "persistencialabclinico.entities.SclOpcionmenu[ idOpcion=" + idOpcion + " ]";
+    }
+    
 }

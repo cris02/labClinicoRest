@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,12 +21,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
-
-import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 
 /**
  *
@@ -77,11 +77,20 @@ public class SclUsuario implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecModi;
     @ManyToMany(mappedBy = "sclUsuarioList", fetch = FetchType.LAZY)
+    private List<SclRol> sclRolList;
+    @ManyToMany(mappedBy = "sclUsuarioList", fetch = FetchType.LAZY)
     private List<SclAreadelaboratorio> sclAreadelaboratorioList;
-    @JsonIncludeProperties({"idClinica"})
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    private List<SclExamenquimicaclinica> sclExamenquimicaclinicaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    private List<SclExamenhematologia> sclExamenhematologiaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    private List<SclExamencoprologia> sclExamencoprologiaList;
     @JoinColumn(name = "id_clinica", referencedColumnName = "id_clinica", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclClinica idClinica;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    private List<SclExamenurianalisis> sclExamenurianalisisList;
 
     public SclUsuario() {
     }
@@ -198,6 +207,14 @@ public class SclUsuario implements Serializable {
         this.fecModi = fecModi;
     }
 
+    public List<SclRol> getSclRolList() {
+        return sclRolList;
+    }
+
+    public void setSclRolList(List<SclRol> sclRolList) {
+        this.sclRolList = sclRolList;
+    }
+
     public List<SclAreadelaboratorio> getSclAreadelaboratorioList() {
         return sclAreadelaboratorioList;
     }
@@ -206,12 +223,44 @@ public class SclUsuario implements Serializable {
         this.sclAreadelaboratorioList = sclAreadelaboratorioList;
     }
 
+    public List<SclExamenquimicaclinica> getSclExamenquimicaclinicaList() {
+        return sclExamenquimicaclinicaList;
+    }
+
+    public void setSclExamenquimicaclinicaList(List<SclExamenquimicaclinica> sclExamenquimicaclinicaList) {
+        this.sclExamenquimicaclinicaList = sclExamenquimicaclinicaList;
+    }
+
+    public List<SclExamenhematologia> getSclExamenhematologiaList() {
+        return sclExamenhematologiaList;
+    }
+
+    public void setSclExamenhematologiaList(List<SclExamenhematologia> sclExamenhematologiaList) {
+        this.sclExamenhematologiaList = sclExamenhematologiaList;
+    }
+
+    public List<SclExamencoprologia> getSclExamencoprologiaList() {
+        return sclExamencoprologiaList;
+    }
+
+    public void setSclExamencoprologiaList(List<SclExamencoprologia> sclExamencoprologiaList) {
+        this.sclExamencoprologiaList = sclExamencoprologiaList;
+    }
+
     public SclClinica getIdClinica() {
         return idClinica;
     }
 
     public void setIdClinica(SclClinica idClinica) {
         this.idClinica = idClinica;
+    }
+
+    public List<SclExamenurianalisis> getSclExamenurianalisisList() {
+        return sclExamenurianalisisList;
+    }
+
+    public void setSclExamenurianalisisList(List<SclExamenurianalisis> sclExamenurianalisisList) {
+        this.sclExamenurianalisisList = sclExamenurianalisisList;
     }
 
     @Override

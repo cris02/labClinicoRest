@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package persistencialab.entities;
 package com.swrest.model;
 
 import java.io.Serializable;
@@ -30,7 +29,7 @@ import javax.persistence.UniqueConstraint;
  * @author crist
  */
 @Entity
-@Table(name = "examenhematologia", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
+@Table(name = "scl_examenhematologia", catalog = "labclinicodb", schema = "public", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"id_ordenexamen", "id_hematologia"})})
 @NamedQueries({
     @NamedQuery(name = "SclExamenhematologia.findAll", query = "SELECT s FROM SclExamenhematologia s")})
@@ -88,10 +87,10 @@ public class SclExamenhematologia implements Serializable {
     private Boolean grupoO;
     @Column(name = "grupo_ab")
     private Boolean grupoAb;
-    @Column(name = "du_positivo")
-    private Character duPositivo;
-    @Column(name = "du_negativo")
-    private Character duNegativo;
+    @Column(name = "du_positivo", length = 1)
+    private String duPositivo;
+    @Column(name = "du_negativo", length = 1)
+    private String duNegativo;
     @Column(name = "usu_crea", length = 30)
     private String usuCrea;
     @Column(name = "usu_modi", length = 30)
@@ -105,6 +104,11 @@ public class SclExamenhematologia implements Serializable {
     @JoinColumn(name = "id_ordenexamen", referencedColumnName = "id_ordenexamen", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclOrdendeexamen sclOrdendeexamen;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private SclUsuario idUsuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclExamenhematologia", fetch = FetchType.LAZY)
+    private List<SclHechoSangre> sclHechoSangreList;
 
     public SclExamenhematologia() {
     }
@@ -317,19 +321,19 @@ public class SclExamenhematologia implements Serializable {
         this.grupoAb = grupoAb;
     }
 
-    public Character getDuPositivo() {
+    public String getDuPositivo() {
         return duPositivo;
     }
 
-    public void setDuPositivo(Character duPositivo) {
+    public void setDuPositivo(String duPositivo) {
         this.duPositivo = duPositivo;
     }
 
-    public Character getDuNegativo() {
+    public String getDuNegativo() {
         return duNegativo;
     }
 
-    public void setDuNegativo(Character duNegativo) {
+    public void setDuNegativo(String duNegativo) {
         this.duNegativo = duNegativo;
     }
 
@@ -373,6 +377,22 @@ public class SclExamenhematologia implements Serializable {
         this.sclOrdendeexamen = sclOrdendeexamen;
     }
 
+    public SclUsuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(SclUsuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public List<SclHechoSangre> getSclHechoSangreList() {
+        return sclHechoSangreList;
+    }
+
+    public void setSclHechoSangreList(List<SclHechoSangre> sclHechoSangreList) {
+        this.sclHechoSangreList = sclHechoSangreList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -395,7 +415,7 @@ public class SclExamenhematologia implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialab.entities.SclExamenhematologia[ sclExamenhematologiaPK=" + sclExamenhematologiaPK + " ]";
+        return "persistencialabclinico.entities.SclExamenhematologia[ sclExamenhematologiaPK=" + sclExamenhematologiaPK + " ]";
     }
     
 }

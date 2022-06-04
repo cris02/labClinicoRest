@@ -8,6 +8,7 @@ package com.swrest.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,6 +20,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -50,6 +52,8 @@ public class SclAreadelaboratorio implements Serializable {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<SclUsuario> sclUsuarioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclAreadelaboratorio", fetch = FetchType.LAZY)
+    private List<SclHechosArea> sclHechosAreaList;
 
     public SclAreadelaboratorio() {
     }
@@ -94,6 +98,14 @@ public class SclAreadelaboratorio implements Serializable {
 
     public void setSclUsuarioList(List<SclUsuario> sclUsuarioList) {
         this.sclUsuarioList = sclUsuarioList;
+    }
+
+    public List<SclHechosArea> getSclHechosAreaList() {
+        return sclHechosAreaList;
+    }
+
+    public void setSclHechosAreaList(List<SclHechosArea> sclHechosAreaList) {
+        this.sclHechosAreaList = sclHechosAreaList;
     }
 
     @Override
