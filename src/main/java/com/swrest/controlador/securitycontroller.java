@@ -17,10 +17,28 @@ public class securitycontroller {
 	
 	@Autowired
 	private securityserv service;
-
-    @GetMapping("/reset") //?id=
-    public SclUsuario sendMail(@RequestParam Integer id) {
+	
+    
+    @GetMapping("/flag") //?id=
+    public SclUsuario darDeBaja(@RequestParam Integer id) {
+    	return service.darDeBaja(id);
+    }
+    
+	
+	@GetMapping("/reset") //?email=
+    public String solicitudReinicio(@RequestParam String email) {
+		return service.solicitarReinicio(email);
+	}
+    
+	
+    @GetMapping("/send") //?id=
+    public String sendMail(@RequestParam Integer id) {
     	return service.generarClave(id);
+    }
+    
+    @GetMapping("/psw") //?email= ... &c1= ... &c2= ...
+    public String resetPassword(@RequestParam String email, String c1, String c2) {
+    	return service.cambioClave(email, c1, c2);
     }
     
 }

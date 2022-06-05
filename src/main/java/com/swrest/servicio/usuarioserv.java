@@ -23,11 +23,21 @@ public class usuarioserv
     { return usuariorepositorio.findAll(); }
     
     
+    public SclUsuario listarCorreo(String email) {
+    	return usuariorepositorio.findByEmail(email);
+    }
+    
+    
     public SclUsuario insertar(SclUsuario usu) {
-    	String encodedPass = seguridad.encriptarClave(usu.getClave());
-    	usu.setClave(encodedPass);
-    	
-    	return usuariorepositorio.save(usu);
+    	String correo = usu.getCorreo();
+    	usu.setCorreo(correo.toLowerCase()); //pasa correo a solo minusculas
+    	if(usuariorepositorio.findByEmail(usu.getCorreo()) == null) {
+    		String encodedPass = seguridad.encriptarClave(usu.getClave());
+        	usu.setClave(encodedPass);
+        	
+        	return usuariorepositorio.save(usu);
+    	}
+    	else return null;
     }
     
     
@@ -42,20 +52,6 @@ public class usuarioserv
     	else return null;
     }
     
-	public SclUsuario darDeBaja(Integer id) 
-	{
-		if(usuariorepositorio.existsById(id)) {
-			SclUsuario user = usuariorepositorio.findById(id).get();
-	    	if(user.getActivo() == true)
-	    		user.setActivo(false);
-	    	else
-	    		user.setActivo(true);
-	    	
-	    	usuariorepositorio.save(user);
-	    	
-	    	return user;
-		} else return null;
-    }
 
     public void eliminar(SclUsuario usu)
     {

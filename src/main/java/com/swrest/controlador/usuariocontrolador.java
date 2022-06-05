@@ -21,21 +21,20 @@ public class usuariocontrolador
 {
     @Autowired
     private usuarioserv usuarioservicio;
+
     
     @GetMapping("/all")
     public List<SclUsuario> listar()
     { 	return usuarioservicio.listar(); 	}
     
+    
     @PostMapping("/save")
     public SclUsuario insertar(@RequestBody SclUsuario usu) 
     { 	return usuarioservicio.insertar(usu);	}
     
+    
     @PutMapping("/upd")
     public SclUsuario actualizar(@RequestBody SclUsuario usu)
     { 	return usuarioservicio.actualizar(usu);	}
-    
-    @GetMapping("/flag") //?id=
-    public SclUsuario darDeBaja(@RequestParam Integer id)
-    { return usuarioservicio.darDeBaja(id); }
 
 }
