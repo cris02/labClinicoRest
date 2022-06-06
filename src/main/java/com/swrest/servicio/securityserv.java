@@ -23,6 +23,8 @@ public class securityserv {
     private UsuarioRepository usuariorepositorio;
     @Autowired
     private JavaMailSender mailsender;
+    //correo del administrador
+    private final String correoadmin = "mr14015@ues.edu.sv";
     
     
 	//Encriptador de contraseña
@@ -102,7 +104,7 @@ public class securityserv {
     	 MimeMessage notificacion = mailsender.createMimeMessage();
    		 MimeMessageHelper helper = new MimeMessageHelper(notificacion);
        	 helper.setFrom("mr14015@clases.edu.sv","Laboratorio Clínico");
-       	 helper.setTo(user.getCorreo());
+       	 helper.setTo(correoadmin);
        	 helper.setSubject("Solicitud de recuperación de clave");
        	 helper.setText("<p>El usuario <b>" + user.getNombre() + " " + user.getApellido() +
         			"</b> con direccion de correo: <b>" + user.getCorreo() +
