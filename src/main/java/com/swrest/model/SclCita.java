@@ -23,6 +23,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
 /**
  *
  * @author crist
@@ -44,6 +46,7 @@ public class SclCita implements Serializable {
     @Column(name = "fecha_cita", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaCita;
+    @JsonIncludeProperties({"idPaciente"})
     @JoinColumn(name = "id_paciente", referencedColumnName = "id_paciente", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclPaciente idPaciente;

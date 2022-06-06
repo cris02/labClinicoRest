@@ -28,6 +28,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 
 /**
  *
@@ -78,20 +79,26 @@ public class SclUsuario implements Serializable {
     @Column(name = "fec_modi")
     @Temporal(TemporalType.DATE)
     private Date fecModi;
+    @JsonIgnore
     @ManyToMany(mappedBy = "sclUsuarioList", fetch = FetchType.LAZY)
     private List<SclRol> sclRolList;
+    @JsonIgnore
     @ManyToMany(mappedBy = "sclUsuarioList", fetch = FetchType.LAZY)
     private List<SclAreadelaboratorio> sclAreadelaboratorioList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<SclExamenquimicaclinica> sclExamenquimicaclinicaList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<SclExamenhematologia> sclExamenhematologiaList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<SclExamencoprologia> sclExamencoprologiaList;
-    @JsonIgnore
+    @JsonIncludeProperties({"idClinica"})
     @JoinColumn(name = "id_clinica", referencedColumnName = "id_clinica", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclClinica idClinica;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<SclExamenurianalisis> sclExamenurianalisisList;
 

@@ -22,6 +22,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author crist
@@ -52,6 +54,7 @@ public class SclOpcionmenu implements Serializable {
     private String icon;
     @Column(name = "parametros", length = 60)
     private String parametros;
+    @JsonIgnore
     @JoinTable(name = "scl_opciondemenupor_rol", joinColumns = {
         @JoinColumn(name = "id_opcion", referencedColumnName = "id_opcion", nullable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "id_rol", referencedColumnName = "id_rol", nullable = false)})

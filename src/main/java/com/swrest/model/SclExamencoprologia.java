@@ -22,6 +22,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
 /**
  *
  * @author crist
@@ -85,9 +87,11 @@ public class SclExamencoprologia implements Serializable {
     @Column(name = "fec_modi")
     @Temporal(TemporalType.DATE)
     private Date fecModi;
+    @JsonIncludeProperties({"idOrdenexamen"})
     @JoinColumn(name = "id_ordenexamen", referencedColumnName = "id_ordenexamen", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclOrdendeexamen sclOrdendeexamen;
+    @JsonIncludeProperties({"idUsuario"})
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclUsuario idUsuario;

@@ -18,6 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
 /**
  *
  * @author crist
@@ -34,20 +36,24 @@ public class SclHechoSangre implements Serializable {
     protected SclHechoSangrePK sclHechoSangrePK;
     @Column(name = "cant_examen")
     private Integer cantExamen;
+    @JsonIncludeProperties({"sclExamenhematologiaPK"})
     @JoinColumns({
         @JoinColumn(name = "id_ordenexamen", referencedColumnName = "id_ordenexamen", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "id_hematologia", referencedColumnName = "id_hematologia", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclExamenhematologia sclExamenhematologia;
+    @JsonIncludeProperties({"sclMunicipioPK"})
     @JoinColumns({
         @JoinColumn(name = "id_pais", referencedColumnName = "id_pais", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "id_depto", referencedColumnName = "id_depto", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "id_municipio", referencedColumnName = "id_municipio", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclMunicipio sclMunicipio;
+    @JsonIncludeProperties({"idPaciente"})
     @JoinColumn(name = "id_paciente", referencedColumnName = "id_paciente", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclPaciente sclPaciente;
+    @JsonIncludeProperties({"idRangoEdad"})
     @JoinColumn(name = "id_rango_edad", referencedColumnName = "id_rango_edad", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclRangoEdad sclRangoEdad;

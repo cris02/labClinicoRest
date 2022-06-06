@@ -25,6 +25,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author crist
@@ -57,11 +59,13 @@ public class SclRol implements Serializable {
     @Column(name = "fec_modi2")
     @Temporal(TemporalType.DATE)
     private Date fecModi2;
+    @JsonIgnore
     @JoinTable(name = "scl_usuarioporrol", joinColumns = {
         @JoinColumn(name = "id_rol", referencedColumnName = "id_rol", nullable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<SclUsuario> sclUsuarioList;
+    @JsonIgnore
     @ManyToMany(mappedBy = "sclRolList", fetch = FetchType.LAZY)
     private List<SclOpcionmenu> sclOpcionmenuList;
 

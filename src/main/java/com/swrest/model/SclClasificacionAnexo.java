@@ -21,6 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author crist
@@ -41,6 +43,7 @@ public class SclClasificacionAnexo implements Serializable {
     @Basic(optional = false)
     @Column(name = "clasificacion", nullable = false, length = 50)
     private String clasificacion;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClasanexo", fetch = FetchType.LAZY)
     private List<SclDocumentoAnexo> sclDocumentoAnexoList;
 
