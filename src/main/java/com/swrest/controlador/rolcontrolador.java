@@ -22,19 +22,19 @@ public class rolcontrolador
     @Autowired
     private rolserv objservicio;
     
-    @GetMapping
+    @GetMapping("/all")
     public List<SclRol> listar()
     { return objservicio.listar(); }
     
-    @PostMapping
+    @PostMapping("/save")
     public SclRol insertar(@RequestBody SclRol usu)
     { return objservicio.insertar(usu); }
     
-    @PutMapping
+    @PutMapping("/upd")
     public SclRol actualizar(@RequestBody SclRol usu)
     { return objservicio.actualizar(usu); }
     
-    @DeleteMapping
+    @DeleteMapping("/del")
     public void eliminar(@RequestBody SclRol usu)
     { objservicio.eliminar(usu); }
     
