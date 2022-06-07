@@ -14,18 +14,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.swrest.servicio.CustomUserDetailsServ;
 
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	@SuppressWarnings("unused")
 	@Autowired
-	private DataSource datasource;
+	private DataSource dataSource;
 
 	@Override
 	protected UserDetailsService userDetailsService() {
-		// TODO Auto-generated method stub
-		return super.userDetailsService();
+		//return super.userDetailsService();
+		return new CustomUserDetailsServ();
 	}
 	
 	@Bean
@@ -53,5 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// TODO Auto-generated method stub
 		//super.configure(http);
 		http.authorizeRequests().antMatchers("/").permitAll();
+		
+		http.formLogin()
+		.defaultSuccessUrl("/usuario/all").permitAll().and()
+		.logout().logoutSuccessUrl("/login").permitAll();
 	}
 }
