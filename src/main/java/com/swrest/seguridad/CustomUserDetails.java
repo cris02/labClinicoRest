@@ -1,9 +1,11 @@
-package com.swrest.model;
+package com.swrest.seguridad;
 
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.swrest.model.SclUsuario;
 
 
 public class CustomUserDetails implements UserDetails {

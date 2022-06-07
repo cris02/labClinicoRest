@@ -1,4 +1,4 @@
-package com.swrest;
+package com.swrest.seguridad;
 
 import javax.sql.DataSource;
 
@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.swrest.servicio.CustomUserDetailsServ;
@@ -23,12 +22,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@SuppressWarnings("unused")
 	@Autowired
 	private DataSource dataSource;
+	@Autowired
+	private CustomUserDetailsServ cudservice;
 
-	@Override
-	protected UserDetailsService userDetailsService() {
-		//return super.userDetailsService();
-		return new CustomUserDetailsServ();
-	}
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -38,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public DaoAuthenticationProvider authProvider() {
 		DaoAuthenticationProvider authprovider = new DaoAuthenticationProvider();
-		authprovider.setUserDetailsService(userDetailsService());
+		authprovider.setUserDetailsService(cudservice);
 		authprovider.setPasswordEncoder(passwordEncoder());
 		return authprovider;
 	}
