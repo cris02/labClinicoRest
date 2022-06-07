@@ -28,7 +28,7 @@ public class securityserv {
     
     
 	//Encriptador de contraseña
-	public String encriptarClave(String clave) {
+	protected String encriptarClave(String clave) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodedPass = encoder.encode(clave);
 		
@@ -53,7 +53,7 @@ public class securityserv {
 	
     
     public String cambioClave(String email, String claveActual, String claveNueva) {
-    	SclUsuario user = usuariorepositorio.findByEmail(email.toLowerCase());
+    	SclUsuario user = usuariorepositorio.findByCorreo(email.toLowerCase());
     	if(user != null) {
     		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     		if(encoder.matches(claveActual, user.getClave())) {
@@ -89,7 +89,7 @@ public class securityserv {
     
     
      public String solicitarReinicio(String email) {
-    	 SclUsuario user = usuariorepositorio.findByEmail(email.toLowerCase());
+    	 SclUsuario user = usuariorepositorio.findByCorreo(email.toLowerCase());
     	 if(user != null) {
     		 try {	this.notificar(user);	} 
       		 catch (UnsupportedEncodingException e) {	e.printStackTrace();	} 

@@ -14,24 +14,24 @@ import com.swrest.repositorio.UsuarioRepository;
 public class usuarioserv
 {
     @Autowired
-    private UsuarioRepository usuariorepositorio;
-    @Autowired
     private securityserv seguridad;
+    @Autowired
+    private UsuarioRepository usuariorepositorio;
     
     
     public List<SclUsuario> listar()
     { return usuariorepositorio.findAll(); }
-    
+
     
     public SclUsuario listarCorreo(String email) {
-    	return usuariorepositorio.findByEmail(email);
+    	return usuariorepositorio.findByCorreo(email);
     }
     
     
     public SclUsuario insertar(SclUsuario usu) {
     	String correo = usu.getCorreo();
     	usu.setCorreo(correo.toLowerCase()); //pasa correo a solo minusculas
-    	if(usuariorepositorio.findByEmail(usu.getCorreo()) == null) {
+    	if(usuariorepositorio.findByCorreo(usu.getCorreo()) == null) {
     		String encodedPass = seguridad.encriptarClave(usu.getClave());
         	usu.setClave(encodedPass);
         	

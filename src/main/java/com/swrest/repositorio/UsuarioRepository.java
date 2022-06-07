@@ -10,5 +10,5 @@ import com.swrest.model.SclUsuario;
 public interface UsuarioRepository extends JpaRepository <SclUsuario, Integer>
 {	
 	@Query("SELECT u FROM SclUsuario u WHERE u.correo = ?1")
-	SclUsuario findByEmail(String email);
+	SclUsuario findByCorreo(String correo);
 }
