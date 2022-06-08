@@ -11,18 +11,18 @@ import com.swrest.repositorio.OrdenDeExamenRepository;
 public class ordendeexamenserv
 {
     @Autowired
-    private OrdenDeExamenRepository paisrepositorio;
+    private OrdenDeExamenRepository repositorio;
     
     public SclOrdendeexamen insertar(SclOrdendeexamen a_obj)
-    { return paisrepositorio.save(a_obj); }
+    { return repositorio.save(a_obj); }
     
     public SclOrdendeexamen actualizar(SclOrdendeexamen a_obj)
-    { return paisrepositorio.save(a_obj); }
+    { return repositorio.save(a_obj); }
     
     public List<SclOrdendeexamen> listar()
-    { return paisrepositorio.findAll(); }
+    { return repositorio.findAll(); }
     
     public void eliminar(SclOrdendeexamen a_obj)
-    { paisrepositorio.delete(a_obj); }
+    { repositorio.delete(a_obj); }
 }
 
