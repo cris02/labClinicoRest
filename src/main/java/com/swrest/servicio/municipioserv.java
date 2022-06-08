@@ -14,9 +14,17 @@ public class municipioserv
     @Autowired
     private MunicipioRepository repo;
     
-    
     public List<SclMunicipio> listar()
     { return repo.findAll(); }
+    
+    public SclMunicipio insertar(SclMunicipio muni)
+    { return repo.save(muni); }
+    
+    public SclMunicipio actualizar(SclMunicipio muni)
+    { return repo.save(muni); }
+    
+    public void eliminar(SclMunicipio muni)
+    { repo.delete(muni); }
 
 }
 
