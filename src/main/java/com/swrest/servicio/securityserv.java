@@ -28,7 +28,7 @@ public class securityserv {
     
     
 	//Encriptador de contraseña
-	protected String encriptarClave(String clave) {
+	public String encriptarClave(String clave) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodedPass = encoder.encode(clave);
 		

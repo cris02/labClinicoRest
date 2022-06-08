@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swrest.model.SclUsuario;
+import com.swrest.response.LoginResponse;
+import com.swrest.servicio.CustomUserDetailsServ;
 import com.swrest.servicio.securityserv;
 
 @CrossOrigin(origins = "*")
@@ -17,8 +19,17 @@ public class securitycontroller {
 	
 	@Autowired
 	private securityserv service;
+	@Autowired
+	private CustomUserDetailsServ userdetailsserv;
 	
+	
+	@GetMapping("/login")
+	public LoginResponse login(@RequestParam String email, String c) {
+		
+		return userdetailsserv.login(email, c);
+	}
     
+	
     @GetMapping("/flag") //?id=
     public SclUsuario darDeBaja(@RequestParam Integer id) {
     	return service.darDeBaja(id);
@@ -35,6 +46,7 @@ public class securitycontroller {
     public String sendMail(@RequestParam Integer id) {
     	return service.generarClave(id);
     }
+    
     
     @GetMapping("/psw") //?email= ... &c1= ... &c2= ...
     public String resetPassword(@RequestParam String email, String c1, String c2) {
