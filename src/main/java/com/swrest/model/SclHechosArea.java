@@ -18,6 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author crist
@@ -34,15 +36,18 @@ public class SclHechosArea implements Serializable {
     protected SclHechosAreaPK sclHechosAreaPK;
     @Column(name = "cant_examenes")
     private Integer cantExamenes;
+    @JsonIgnore
     @JoinColumn(name = "id_area", referencedColumnName = "id_area", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclAreadelaboratorio sclAreadelaboratorio;
+    @JsonIgnore
     @JoinColumns({
         @JoinColumn(name = "id_pais", referencedColumnName = "id_pais", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "id_depto", referencedColumnName = "id_depto", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "id_municipio", referencedColumnName = "id_municipio", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclMunicipio sclMunicipio;
+    @JsonIgnore
     @JoinColumn(name = "id_paciente", referencedColumnName = "id_paciente", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclPaciente sclPaciente;

@@ -18,6 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
 /**
  *
  * @author crist
@@ -37,9 +39,11 @@ public class SclContacto implements Serializable {
     private String contacto;
     @Column(name = "comentario", length = 200)
     private String comentario;
+    @JsonIncludeProperties({"idPaciente"})
     @JoinColumn(name = "id_paciente", referencedColumnName = "id_paciente", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclPaciente sclPaciente;
+    @JsonIncludeProperties({"idTipocontacto"})
     @JoinColumn(name = "id_tipocontacto", referencedColumnName = "id_tipocontacto", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclTipoContacto sclTipoContacto;

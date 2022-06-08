@@ -27,6 +27,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
 /**
  *
  * @author crist
@@ -84,18 +87,25 @@ public class SclPaciente implements Serializable {
     @Basic(optional = false)
     @Column(name = "activo_paciente", nullable = false)
     private boolean activoPaciente;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente", fetch = FetchType.LAZY)
     private List<SclOrdendeexamen> sclOrdendeexamenList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPaciente", fetch = FetchType.LAZY)
     private List<SclHechosArea> sclHechosAreaList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPaciente", fetch = FetchType.LAZY)
     private List<SclContacto> sclContactoList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPaciente", fetch = FetchType.LAZY)
     private List<SclDocumentoAnexo> sclDocumentoAnexoList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPaciente", fetch = FetchType.LAZY)
     private List<SclHechoSangre> sclHechoSangreList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente", fetch = FetchType.LAZY)
     private List<SclCita> sclCitaList;
+    @JsonIncludeProperties({"idClinica"})
     @JoinColumn(name = "id_clinica", referencedColumnName = "id_clinica", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclClinica idClinica;
@@ -105,9 +115,11 @@ public class SclPaciente implements Serializable {
         @JoinColumn(name = "id_municipio", referencedColumnName = "id_municipio")})
     @ManyToOne(fetch = FetchType.LAZY)
     private SclMunicipio sclMunicipio;
+    @JsonIncludeProperties({"idTipoDocumento"})
     @JoinColumn(name = "id_tipo_documento", referencedColumnName = "id_tipo_documento")
     @ManyToOne(fetch = FetchType.LAZY)
     private SclTipoDocumento idTipoDocumento;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPaciente", fetch = FetchType.LAZY)
     private List<SclHechoEpidemiologia> sclHechoEpidemiologiaList;
 

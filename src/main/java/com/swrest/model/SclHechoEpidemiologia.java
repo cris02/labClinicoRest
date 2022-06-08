@@ -18,6 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author crist
@@ -40,20 +42,24 @@ public class SclHechoEpidemiologia implements Serializable {
     private Integer cantAcidoUrico;
     @Column(name = "cant_glucosa")
     private Integer cantGlucosa;
+    @JsonIgnore
     @JoinColumns({
         @JoinColumn(name = "id_ordenexamen", referencedColumnName = "id_ordenexamen", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "id_quimicaclinica", referencedColumnName = "id_quimicaclinica", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclExamenquimicaclinica sclExamenquimicaclinica;
+    @JsonIgnore
     @JoinColumns({
         @JoinColumn(name = "id_pais", referencedColumnName = "id_pais", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "id_depto", referencedColumnName = "id_depto", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "id_municipio", referencedColumnName = "id_municipio", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclMunicipio sclMunicipio;
+    @JsonIgnore
     @JoinColumn(name = "id_paciente", referencedColumnName = "id_paciente", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclPaciente sclPaciente;
+    @JsonIgnore
     @JoinColumn(name = "id_rango_edad", referencedColumnName = "id_rango_edad", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclRangoEdad sclRangoEdad;

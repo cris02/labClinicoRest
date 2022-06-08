@@ -21,6 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author crist
@@ -45,8 +47,10 @@ public class SclRangoEdad implements Serializable {
     private Integer valInferior;
     @Column(name = "val_superior")
     private Integer valSuperior;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclRangoEdad", fetch = FetchType.LAZY)
     private List<SclHechoSangre> sclHechoSangreList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclRangoEdad", fetch = FetchType.LAZY)
     private List<SclHechoEpidemiologia> sclHechoEpidemiologiaList;
 

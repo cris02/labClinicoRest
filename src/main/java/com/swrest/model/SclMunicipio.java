@@ -22,6 +22,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author crist
@@ -39,17 +41,22 @@ public class SclMunicipio implements Serializable {
     @Basic(optional = false)
     @Column(name = "nom_municipio", nullable = false, length = 35)
     private String nomMunicipio;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclMunicipio", fetch = FetchType.LAZY)
     private List<SclHechosArea> sclHechosAreaList;
+    @JsonIgnore
     @JoinColumns({
         @JoinColumn(name = "id_pais", referencedColumnName = "id_pais", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "id_depto", referencedColumnName = "id_depto", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclDepartamento sclDepartamento;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclMunicipio", fetch = FetchType.LAZY)
     private List<SclHechoSangre> sclHechoSangreList;
+    @JsonIgnore
     @OneToMany(mappedBy = "sclMunicipio", fetch = FetchType.LAZY)
     private List<SclPaciente> sclPacienteList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclMunicipio", fetch = FetchType.LAZY)
     private List<SclHechoEpidemiologia> sclHechoEpidemiologiaList;
 
