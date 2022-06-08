@@ -50,10 +50,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		//super.configure(http);
-		http.authorizeRequests().antMatchers("/").permitAll();
-		
+		http.authorizeRequests().antMatchers("/**").permitAll();
+		/*
 		http.formLogin()
 		.defaultSuccessUrl("/usuario/all").permitAll().and()
 		.logout().logoutSuccessUrl("/login").permitAll();
+		*/
 	}
 }
