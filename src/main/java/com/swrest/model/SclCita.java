@@ -106,7 +106,7 @@ public class SclCita implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclCita[ idCita=" + idCita + " ]";
+        return "persistencialabv1.models.SclCita[ idCita=" + idCita + " ]";
     }
     
 }

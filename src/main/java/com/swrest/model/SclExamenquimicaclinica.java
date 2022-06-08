@@ -206,7 +206,7 @@ public class SclExamenquimicaclinica implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclExamenquimicaclinica[ sclExamenquimicaclinicaPK=" + sclExamenquimicaclinicaPK + " ]";
+        return "persistencialabv1.models.SclExamenquimicaclinica[ sclExamenquimicaclinicaPK=" + sclExamenquimicaclinicaPK + " ]";
     }
     
 }

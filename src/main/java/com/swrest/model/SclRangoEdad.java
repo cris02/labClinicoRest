@@ -132,7 +132,7 @@ public class SclRangoEdad implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclRangoEdad[ idRangoEdad=" + idRangoEdad + " ]";
+        return "persistencialabv1.models.SclRangoEdad[ idRangoEdad=" + idRangoEdad + " ]";
     }
     
 }

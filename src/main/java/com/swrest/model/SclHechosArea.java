@@ -120,7 +120,7 @@ public class SclHechosArea implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclHechosArea[ sclHechosAreaPK=" + sclHechosAreaPK + " ]";
+        return "persistencialabv1.models.SclHechosArea[ sclHechosAreaPK=" + sclHechosAreaPK + " ]";
     }
     
 }

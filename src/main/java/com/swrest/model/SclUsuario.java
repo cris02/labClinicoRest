@@ -27,8 +27,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 /**
  *
  * @author crist
@@ -88,7 +86,6 @@ public class SclUsuario implements Serializable {
     private List<SclExamenhematologia> sclExamenhematologiaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private List<SclExamencoprologia> sclExamencoprologiaList;
-    @JsonIgnore
     @JoinColumn(name = "id_clinica", referencedColumnName = "id_clinica", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclClinica idClinica;
@@ -288,7 +285,7 @@ public class SclUsuario implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclUsuario[ idUsuario=" + idUsuario + " ]";
+        return "persistencialabv1.models.SclUsuario[ idUsuario=" + idUsuario + " ]";
     }
     
 }

@@ -36,8 +36,8 @@ public class SclPais implements Serializable {
     @Column(name = "id_pais", nullable = false, length = 3)
     private String idPais;
     @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 50)
-    private String nombre;
+    @Column(name = "nom_pais", nullable = false, length = 50)
+    private String nomPais;
     @Basic(optional = false)
     @Column(name = "id_iso2", nullable = false, length = 2)
     private String idIso2;
@@ -51,9 +51,9 @@ public class SclPais implements Serializable {
         this.idPais = idPais;
     }
 
-    public SclPais(String idPais, String nombre, String idIso2) {
+    public SclPais(String idPais, String nomPais, String idIso2) {
         this.idPais = idPais;
-        this.nombre = nombre;
+        this.nomPais = nomPais;
         this.idIso2 = idIso2;
     }
 
@@ -65,12 +65,12 @@ public class SclPais implements Serializable {
         this.idPais = idPais;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNomPais() {
+        return nomPais;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNomPais(String nomPais) {
+        this.nomPais = nomPais;
     }
 
     public String getIdIso2() {
@@ -111,7 +111,7 @@ public class SclPais implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclPais[ idPais=" + idPais + " ]";
+        return "persistencialabv1.models.SclPais[ idPais=" + idPais + " ]";
     }
     
 }

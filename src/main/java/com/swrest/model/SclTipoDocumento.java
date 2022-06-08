@@ -101,7 +101,7 @@ public class SclTipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclTipoDocumento[ idTipoDocumento=" + idTipoDocumento + " ]";
+        return "persistencialabv1.models.SclTipoDocumento[ idTipoDocumento=" + idTipoDocumento + " ]";
     }
     
 }

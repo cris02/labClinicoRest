@@ -165,7 +165,7 @@ public class SclRol implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclRol[ idRol=" + idRol + " ]";
+        return "persistencialabv1.models.SclRol[ idRol=" + idRol + " ]";
     }
     
 }

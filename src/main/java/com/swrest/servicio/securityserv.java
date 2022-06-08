@@ -23,6 +23,8 @@ public class securityserv {
     private UsuarioRepository usuariorepositorio;
     @Autowired
     private JavaMailSender mailsender;
+    //correo del administrador
+    private final String correoadmin = "mr14015@ues.edu.sv";
     
     
 	//Encriptador de contraseña
@@ -51,7 +53,7 @@ public class securityserv {
 	
     
     public String cambioClave(String email, String claveActual, String claveNueva) {
-    	SclUsuario user = usuariorepositorio.findByEmail(email.toLowerCase());
+    	SclUsuario user = usuariorepositorio.findByCorreo(email.toLowerCase());
     	if(user != null) {
     		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     		if(encoder.matches(claveActual, user.getClave())) {
@@ -87,7 +89,7 @@ public class securityserv {
     
     
      public String solicitarReinicio(String email) {
-    	 SclUsuario user = usuariorepositorio.findByEmail(email.toLowerCase());
+    	 SclUsuario user = usuariorepositorio.findByCorreo(email.toLowerCase());
     	 if(user != null) {
     		 try {	this.notificar(user);	} 
       		 catch (UnsupportedEncodingException e) {	e.printStackTrace();	} 
@@ -102,7 +104,7 @@ public class securityserv {
     	 MimeMessage notificacion = mailsender.createMimeMessage();
    		 MimeMessageHelper helper = new MimeMessageHelper(notificacion);
        	 helper.setFrom("mr14015@clases.edu.sv","Laboratorio Clínico");
-       	 helper.setTo(user.getCorreo());
+       	 helper.setTo(correoadmin);
        	 helper.setSubject("Solicitud de recuperación de clave");
        	 helper.setText("<p>El usuario <b>" + user.getNombre() + " " + user.getApellido() +
         			"</b> con direccion de correo: <b>" + user.getCorreo() +

@@ -186,7 +186,7 @@ public class SclHechoEpidemiologiaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclHechoEpidemiologiaPK[ idRangoEdad=" + idRangoEdad + ", idPais=" + idPais + ", idDepto=" + idDepto + ", idMunicipio=" + idMunicipio + ", idOrdenexamen=" + idOrdenexamen + ", idQuimicaclinica=" + idQuimicaclinica + ", idPaciente=" + idPaciente + ", epideAnio=" + epideAnio + ", epideMes=" + epideMes + " ]";
+        return "persistencialabv1.models.SclHechoEpidemiologiaPK[ idRangoEdad=" + idRangoEdad + ", idPais=" + idPais + ", idDepto=" + idDepto + ", idMunicipio=" + idMunicipio + ", idOrdenexamen=" + idOrdenexamen + ", idQuimicaclinica=" + idQuimicaclinica + ", idPaciente=" + idPaciente + ", epideAnio=" + epideAnio + ", epideMes=" + epideMes + " ]";
     }
     
 }

@@ -102,7 +102,7 @@ public class SclTipoContacto implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclTipoContacto[ idTipocontacto=" + idTipocontacto + " ]";
+        return "persistencialabv1.models.SclTipoContacto[ idTipocontacto=" + idTipocontacto + " ]";
     }
     
 }

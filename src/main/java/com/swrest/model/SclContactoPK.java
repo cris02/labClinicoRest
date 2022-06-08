@@ -90,7 +90,7 @@ public class SclContactoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclContactoPK[ idTipocontacto=" + idTipocontacto + ", idPaciente=" + idPaciente + ", idContacto=" + idContacto + " ]";
+        return "persistencialabv1.models.SclContactoPK[ idTipocontacto=" + idTipocontacto + ", idPaciente=" + idPaciente + ", idContacto=" + idContacto + " ]";
     }
     
 }

@@ -222,7 +222,7 @@ public class SclOrdendeexamen implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclOrdendeexamen[ idOrdenexamen=" + idOrdenexamen + " ]";
+        return "persistencialabv1.models.SclOrdendeexamen[ idOrdenexamen=" + idOrdenexamen + " ]";
     }
     
 }

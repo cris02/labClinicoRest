@@ -74,7 +74,7 @@ public class SclDepartamentoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclDepartamentoPK[ idPais=" + idPais + ", idDepto=" + idDepto + " ]";
+        return "persistencialabv1.models.SclDepartamentoPK[ idPais=" + idPais + ", idDepto=" + idDepto + " ]";
     }
     
 }

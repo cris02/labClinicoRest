@@ -102,7 +102,7 @@ public class SclClasificacionAnexo implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclClasificacionAnexo[ idClasanexo=" + idClasanexo + " ]";
+        return "persistencialabv1.models.SclClasificacionAnexo[ idClasanexo=" + idClasanexo + " ]";
     }
     
 }

@@ -154,7 +154,7 @@ public class SclHechosAreaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclHechosAreaPK[ idPais=" + idPais + ", idDepto=" + idDepto + ", idMunicipio=" + idMunicipio + ", idArea=" + idArea + ", idPaciente=" + idPaciente + ", areaAnio=" + areaAnio + ", areaMes=" + areaMes + " ]";
+        return "persistencialabv1.models.SclHechosAreaPK[ idPais=" + idPais + ", idDepto=" + idDepto + ", idMunicipio=" + idMunicipio + ", idArea=" + idArea + ", idPaciente=" + idPaciente + ", areaAnio=" + areaAnio + ", areaMes=" + areaMes + " ]";
     }
     
 }

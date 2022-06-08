@@ -122,7 +122,7 @@ public class SclContacto implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclContacto[ sclContactoPK=" + sclContactoPK + " ]";
+        return "persistencialabv1.models.SclContacto[ sclContactoPK=" + sclContactoPK + " ]";
     }
     
 }

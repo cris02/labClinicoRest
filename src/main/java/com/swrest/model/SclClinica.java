@@ -128,7 +128,7 @@ public class SclClinica implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclClinica[ idClinica=" + idClinica + " ]";
+        return "persistencialabv1.models.SclClinica[ idClinica=" + idClinica + " ]";
     }
     
 }

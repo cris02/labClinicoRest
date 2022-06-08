@@ -147,7 +147,7 @@ public class SclMunicipio implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclMunicipio[ sclMunicipioPK=" + sclMunicipioPK + " ]";
+        return "persistencialabv1.models.SclMunicipio[ sclMunicipioPK=" + sclMunicipioPK + " ]";
     }
     
 }

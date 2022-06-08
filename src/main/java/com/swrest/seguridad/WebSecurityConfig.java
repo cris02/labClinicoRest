@@ -1,4 +1,4 @@
-package com.swrest;
+package com.swrest.seguridad;
 
 import javax.sql.DataSource;
 
@@ -11,22 +11,20 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.swrest.servicio.CustomUserDetailsServ;
 
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	@SuppressWarnings("unused")
 	@Autowired
-	private DataSource datasource;
+	private DataSource dataSource;
+	@Autowired
+	private CustomUserDetailsServ cudservice;
 
-	@Override
-	protected UserDetailsService userDetailsService() {
-		// TODO Auto-generated method stub
-		return super.userDetailsService();
-	}
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -36,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public DaoAuthenticationProvider authProvider() {
 		DaoAuthenticationProvider authprovider = new DaoAuthenticationProvider();
-		authprovider.setUserDetailsService(userDetailsService());
+		authprovider.setUserDetailsService(cudservice);
 		authprovider.setPasswordEncoder(passwordEncoder());
 		return authprovider;
 	}
@@ -52,6 +50,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		//super.configure(http);
-		http.authorizeRequests().antMatchers("/").permitAll();
+		http.authorizeRequests().antMatchers("/**").permitAll();
+		/*
+		http.formLogin()
+		.defaultSuccessUrl("/usuario/all").permitAll().and()
+		.logout().logoutSuccessUrl("/login").permitAll();
+		*/
 	}
 }

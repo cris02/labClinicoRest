@@ -367,7 +367,7 @@ public class SclPaciente implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclPaciente[ idPaciente=" + idPaciente + " ]";
+        return "persistencialabv1.models.SclPaciente[ idPaciente=" + idPaciente + " ]";
     }
     
 }

@@ -541,7 +541,7 @@ public class SclExamenurianalisis implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclExamenurianalisis[ sclExamenurianalisisPK=" + sclExamenurianalisisPK + " ]";
+        return "persistencialabv1.models.SclExamenurianalisis[ sclExamenurianalisisPK=" + sclExamenurianalisisPK + " ]";
     }
     
 }

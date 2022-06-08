@@ -130,7 +130,7 @@ public class SclAreadelaboratorio implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclAreadelaboratorio[ idArea=" + idArea + " ]";
+        return "persistencialabv1.models.SclAreadelaboratorio[ idArea=" + idArea + " ]";
     }
     
 }

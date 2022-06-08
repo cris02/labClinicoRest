@@ -154,7 +154,7 @@ public class SclValreferencia implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclValreferencia[ idValreferencia=" + idValreferencia + " ]";
+        return "persistencialabv1.models.SclValreferencia[ idValreferencia=" + idValreferencia + " ]";
     }
     
 }

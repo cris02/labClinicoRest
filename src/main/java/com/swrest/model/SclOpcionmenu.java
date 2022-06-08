@@ -150,7 +150,7 @@ public class SclOpcionmenu implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclOpcionmenu[ idOpcion=" + idOpcion + " ]";
+        return "persistencialabv1.models.SclOpcionmenu[ idOpcion=" + idOpcion + " ]";
     }
     
 }

@@ -133,7 +133,7 @@ public class SclHechoSangre implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclHechoSangre[ sclHechoSangrePK=" + sclHechoSangrePK + " ]";
+        return "persistencialabv1.models.SclHechoSangre[ sclHechoSangrePK=" + sclHechoSangrePK + " ]";
     }
     
 }

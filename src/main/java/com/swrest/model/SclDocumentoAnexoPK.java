@@ -74,7 +74,7 @@ public class SclDocumentoAnexoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencialabclinico.entities.SclDocumentoAnexoPK[ idPaciente=" + idPaciente + ", idDocumento=" + idDocumento + " ]";
+        return "persistencialabv1.models.SclDocumentoAnexoPK[ idPaciente=" + idPaciente + ", idDocumento=" + idDocumento + " ]";
     }
     
 }
