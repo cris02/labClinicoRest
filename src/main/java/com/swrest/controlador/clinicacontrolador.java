@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.swrest.model.SclClinica;
 import com.swrest.servicio.clinicaserv;
 
-
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/clinica")
-public class clinicacontrolador
-{
+public class clinicacontrolador {
 	@Autowired
-    private clinicaserv servicio;
-	
+	private clinicaserv servicio;
+
 	@GetMapping("/all")
-    public List<SclClinica> clinicas()
-    {	return servicio.listar();		}
-	
+	public List<SclClinica> clinicas() {
+		return servicio.listar();
+	}
+
 	@PostMapping("/save")
-	public SclClinica insertar(@RequestBody SclClinica c)
-	{	return servicio.insertar(c);	}
+	public SclClinica insertar(@RequestBody SclClinica c) {
+		return servicio.insertar(c);
+	}
 }

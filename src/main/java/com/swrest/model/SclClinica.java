@@ -21,6 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author crist
@@ -44,8 +46,10 @@ public class SclClinica implements Serializable {
     @Basic(optional = false)
     @Column(name = "tel_clinica", nullable = false, length = 9)
     private String telClinica;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClinica", fetch = FetchType.LAZY)
     private List<SclUsuario> sclUsuarioList;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClinica", fetch = FetchType.LAZY)
     private List<SclPaciente> sclPacienteList;
 
