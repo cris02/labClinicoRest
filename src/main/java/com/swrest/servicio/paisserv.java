@@ -15,8 +15,11 @@ public class paisserv
     @Autowired
     private PaisRepository paisrepositorio;
     
-    public SclPais insertar(SclPais a_obj)
-    { return paisrepositorio.save(a_obj); }
+    public SclPais insertar(SclPais a_obj) {
+    	a_obj.setSclDepartamentoList(null);
+    	
+    	return paisrepositorio.save(a_obj);
+    }
     
     public SclPais actualizar(SclPais a_obj)
     { return paisrepositorio.save(a_obj); }
