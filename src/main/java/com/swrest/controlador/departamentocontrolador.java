@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swrest.model.SclDepartamento;
+import com.swrest.model.SclDepartamentoPK;
 import com.swrest.servicio.departamentoserv;
 
 @CrossOrigin(origins = "*")
@@ -26,6 +28,10 @@ public class departamentocontrolador {
 	@GetMapping("/all")
     public List<SclDepartamento> listar()
     { return servicio.listar(); }
+	
+	@GetMapping("/find") //?p= .... &d=
+    public SclDepartamento listarId(@RequestParam String p, Integer d)
+    { return servicio.listarId(new SclDepartamentoPK(p, d)); }
     
     @PostMapping
     public SclDepartamento insertar(@RequestBody SclDepartamento usu)

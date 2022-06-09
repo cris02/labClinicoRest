@@ -16,6 +16,10 @@ public class pacienteserv
     public List<SclPaciente> listar()
     { return pacienterepositorio.findAll(); }
     
+    public SclPaciente listarId(Integer id) {
+    	return pacienterepositorio.findById(id).orElse(null);
+    }
+    
     
     public SclPaciente insertar(SclPaciente pac)
     {	return pacienterepositorio.save(pac);	}

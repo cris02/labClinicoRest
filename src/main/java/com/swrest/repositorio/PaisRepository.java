@@ -4,10 +4,14 @@
  */
 package com.swrest.repositorio;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.swrest.model.SclPais;
+import com.swrest.response.PaisResponse;
 /**
  *
  * @author Alexa
@@ -15,6 +19,6 @@ import com.swrest.model.SclPais;
 @Repository
 public interface PaisRepository extends JpaRepository <SclPais, String>
 {
-
-    
+	@Query("SELECT p.idPais, p.nomPais, p.idIso2 FROM SclPais p")
+	List<PaisResponse> findList();
 }

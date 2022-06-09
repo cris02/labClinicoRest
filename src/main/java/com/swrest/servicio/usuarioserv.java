@@ -1,6 +1,7 @@
 package com.swrest.servicio;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,6 +22,24 @@ public class usuarioserv
     
     public List<SclUsuario> listar()
     { return usuariorepositorio.findAll(); }
+    
+    
+    public SclUsuario listarId(Integer id) {
+    	return usuariorepositorio.findById(id).orElse(null);
+    }
+    
+    public List<SclUsuario> listResponses() {
+    	List<SclUsuario> usuarios = this.listar();
+    	for (SclUsuario sclUsuario : usuarios) {
+			sclUsuario.setSclRolList(null);
+			sclUsuario.setSclAreadelaboratorioList(null);
+			sclUsuario.setSclExamencoprologiaList(null);
+			sclUsuario.setSclExamenhematologiaList(null);
+			sclUsuario.setSclExamenquimicaclinicaList(null);
+			sclUsuario.setSclExamenurianalisisList(null);
+		}
+    	return usuarios;
+    }
 
     
     public SclUsuario listarCorreo(String email) {
