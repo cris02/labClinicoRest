@@ -43,6 +43,7 @@ public class SclPais implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_iso2", nullable = false, length = 2)
     private String idIso2;
+    
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclPais", fetch = FetchType.LAZY)
     private List<SclDepartamento> sclDepartamentoList;

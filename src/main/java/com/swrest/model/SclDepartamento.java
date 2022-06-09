@@ -41,10 +41,12 @@ public class SclDepartamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "nom_depto", nullable = false, length = 25)
     private String nomDepto;
+    
     @JsonIgnore
     @JoinColumn(name = "id_pais", referencedColumnName = "id_pais", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclPais sclPais;
+    
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclDepartamento", fetch = FetchType.LAZY)
     private List<SclMunicipio> sclMunicipioList;

@@ -24,5 +24,14 @@ public class paisserv
     
     public void eliminar(SclPais a_obj)
     { paisrepositorio.delete(a_obj); }
+    
+    public SclPais findById (String id) {
+    	return paisrepositorio.findById(id).orElse(null);
+    }
+    
+    public void delete (String id) {
+    	paisrepositorio.deleteById(id);
+    }
+    
 }
 
