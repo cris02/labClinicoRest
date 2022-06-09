@@ -10,7 +10,6 @@ import com.swrest.model.VExamenes;
 import com.swrest.repositorio.ExamenRepositoty;
 import com.swrest.repositorio.OrdenDeExamenRepository;
 import com.swrest.repositorio.PacienteRepository;
-import com.swrest.request.ExamenResponse;
 
 @Service
 public class ordendeexamenserv

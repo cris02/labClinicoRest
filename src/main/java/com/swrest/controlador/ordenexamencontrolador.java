@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.swrest.model.SclOrdendeexamen;
 import com.swrest.model.VExamenes;
-import com.swrest.request.ExamenResponse;
 import com.swrest.servicio.ordendeexamenserv;
 
 @CrossOrigin(origins = "*")
