@@ -6,8 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.swrest.model.SclOrdendeexamen;
 import com.swrest.model.SclPaciente;
+import com.swrest.model.VExamenes;
+import com.swrest.repositorio.ExamenRepositoty;
 import com.swrest.repositorio.OrdenDeExamenRepository;
 import com.swrest.repositorio.PacienteRepository;
+import com.swrest.request.ExamenResponse;
 
 @Service
 public class ordendeexamenserv
@@ -16,6 +19,9 @@ public class ordendeexamenserv
     private OrdenDeExamenRepository repositorio;
     @Autowired
     private PacienteRepository pacienterepo;
+    
+    @Autowired
+    private ExamenRepositoty examenRepo;
     
 
     public List<SclOrdendeexamen> listar()
@@ -35,5 +41,11 @@ public class ordendeexamenserv
     
     public void eliminar(SclOrdendeexamen a_obj)
     { repositorio.delete(a_obj); }
+    
+    //listar ordenes
+    public List<VExamenes> listarExamenes(Integer id) {
+    	return examenRepo.getExamenesPac(id);
+    }
+  
 }
 

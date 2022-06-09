@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import com.swrest.model.SclOrdendeexamen;
 import com.swrest.model.SclPaciente;
+import com.swrest.request.ExamenResponse;
 
 @Repository
 public interface OrdenDeExamenRepository extends JpaRepository <SclOrdendeexamen, Integer>
 {
     List<SclOrdendeexamen> findByIdPaciente(SclPaciente idPaciente);
+    
 }

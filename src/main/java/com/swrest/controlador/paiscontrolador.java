@@ -39,7 +39,6 @@ public class paiscontrolador implements Serializable {
 
 	@PostMapping("/insertar")
 	public SclPais insertPais (@RequestBody PaisRequest usu) {
-		LOG.error("ENTRO AL METODO...");
 		
 		SclPais pais = new SclPais();
 		pais.setIdPais(usu.getIdPais());
