@@ -28,6 +28,7 @@ import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+import javax.persistence.Transient;
 
 /**
  *
@@ -82,8 +83,19 @@ public class SclOrdendeexamen implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sclOrdendeexamen", fetch = FetchType.LAZY)
     private List<SclExamenurianalisis> sclExamenurianalisisList;
+    
+    @Transient
+    private Integer pacienteId;
+    
+    public Integer getPacienteId() {
+		return pacienteId;
+	}
 
-    public SclOrdendeexamen() {
+	public void setPacienteId(Integer pacienteId) {
+		this.pacienteId = pacienteId;
+	}
+
+	public SclOrdendeexamen() {
     }
 
     public SclOrdendeexamen(Integer idOrdenexamen) {

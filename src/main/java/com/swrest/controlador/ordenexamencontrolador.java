@@ -25,8 +25,13 @@ public class ordenexamencontrolador {
 	private ordendeexamenserv servicio;
 	
 	@GetMapping("/all")
-    public List<SclOrdendeexamen> listar()
-    { return servicio.listar(); }
+    public List<SclOrdendeexamen> listar() { 
+		List<SclOrdendeexamen> listOrdenes =  servicio.listar();
+		for (SclOrdendeexamen sclOrdendeexamen : listOrdenes) {
+			sclOrdendeexamen.setPacienteId(sclOrdendeexamen.getIdPaciente().getIdPaciente());
+		}
+		return  listOrdenes;
+	}
 	
 	@GetMapping("/find") //?id=
     public SclOrdendeexamen listarId(@RequestParam Integer id)
