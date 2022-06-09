@@ -22,6 +22,9 @@ public class ordendeexamenserv
     public List<SclOrdendeexamen> listar()
     { return repositorio.findAll(); }
     
+    public SclOrdendeexamen listarId(Integer id)
+    { return repositorio.findById(id).orElse(null); }
+    
     public void eliminar(SclOrdendeexamen a_obj)
     { repositorio.delete(a_obj); }
 }
