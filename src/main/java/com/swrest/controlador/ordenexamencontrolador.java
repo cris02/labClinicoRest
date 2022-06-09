@@ -31,6 +31,10 @@ public class ordenexamencontrolador {
 	@GetMapping("/find") //?id=
     public SclOrdendeexamen listarId(@RequestParam Integer id)
     { return servicio.listarId(id); }
+	
+	@GetMapping("/findPaciente") //?id=
+    public List<SclOrdendeexamen> listarIdPaciente(@RequestParam Integer id)
+    { return servicio.listarOrdenPaciente(id); }
     
     @PostMapping("/save")
     public SclOrdendeexamen insertar(@RequestBody SclOrdendeexamen usu)
