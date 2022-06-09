@@ -109,6 +109,7 @@ public class SclPaciente implements Serializable {
     @JoinColumn(name = "id_clinica", referencedColumnName = "id_clinica", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SclClinica idClinica;
+    @JsonIncludeProperties({"sclMunicipioPK"})
     @JoinColumns({
         @JoinColumn(name = "id_pais", referencedColumnName = "id_pais"),
         @JoinColumn(name = "id_depto", referencedColumnName = "id_depto"),
