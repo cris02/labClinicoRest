@@ -10,42 +10,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swrest.model.SclPaciente;
-import com.swrest.servicio.pacienteserv;
+import com.swrest.model.SclHechoSangre;
+import com.swrest.servicio.hechosserv;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/paciente")
-public class pacientecontrolador {
+@RequestMapping("/hechosangre")
+public class hechosangrecontrolador {
 	
-	@Autowired 
-	private pacienteserv servicio;
+	@Autowired
+	private hechosserv servicio;
 	
+
 	@GetMapping("/all")
-	public List<SclPaciente> listar() {
-		return servicio.listar();
-	}
-	
-	@GetMapping("/find") //?id=
-	public SclPaciente listarId(@RequestParam Integer id) {
-		return servicio.listarId(id);
+	public List<SclHechoSangre> listar() {
+		return servicio.listarHechosSangre();
 	}
 	
 	@PostMapping("/save")
-	public void insertar(@RequestBody SclPaciente pac) {
-		servicio.insertar(pac);
+	public SclHechoSangre guardar(@RequestBody SclHechoSangre h) {
+		return servicio.insertarHechoSangre(h);
 	}
 	
 	@PutMapping("/upd")
-	public void actualizar(@RequestBody SclPaciente pac) {
-		servicio.actualizar(pac);
+	public SclHechoSangre actualizar(@RequestBody SclHechoSangre h) {
+		return servicio.actualizarHechoSangre(h);
 	}
 	
 	@DeleteMapping("/del")
-	public void eliminar(@RequestBody SclPaciente pac) {
-		servicio.eliminar(pac);
+	public void eliminar(@RequestBody SclHechoSangre h) {
+		servicio.eliminarHechoSangre(h);
 	}
 }

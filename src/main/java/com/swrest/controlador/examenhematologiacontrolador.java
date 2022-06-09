@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swrest.model.SclExamenhematologia;
+import com.swrest.model.SclExamenhematologiaPK;
 import com.swrest.servicio.examenservice;
 
 @CrossOrigin(origins = "*")
@@ -26,6 +28,11 @@ public class examenhematologiacontrolador {
 	@GetMapping("/hma")
 	public List<SclExamenhematologia> listarHematologia() {
 		return servicio.listarHema();
+	}
+	
+	@GetMapping("/hma/find") //?o= ... & e= ...
+	public SclExamenhematologia listarHematologia(@RequestParam Integer o, Integer e) {
+		return servicio.listarHemaId(new SclExamenhematologiaPK(o,e));
 	}
 	
 	@PostMapping("/hma/save")

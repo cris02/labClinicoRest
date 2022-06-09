@@ -10,42 +10,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swrest.model.SclPaciente;
-import com.swrest.servicio.pacienteserv;
+import com.swrest.model.SclHechoEpidemiologia;
+import com.swrest.servicio.hechosserv;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/paciente")
-public class pacientecontrolador {
+@RequestMapping("/hechoepi")
+public class hechoepidemcontrolador {
 	
-	@Autowired 
-	private pacienteserv servicio;
+	@Autowired
+	private hechosserv servicio;
 	
+
 	@GetMapping("/all")
-	public List<SclPaciente> listar() {
-		return servicio.listar();
-	}
-	
-	@GetMapping("/find") //?id=
-	public SclPaciente listarId(@RequestParam Integer id) {
-		return servicio.listarId(id);
+	public List<SclHechoEpidemiologia> listar() {
+		return servicio.listarHechosEpidem();
 	}
 	
 	@PostMapping("/save")
-	public void insertar(@RequestBody SclPaciente pac) {
-		servicio.insertar(pac);
+	public SclHechoEpidemiologia guardar(@RequestBody SclHechoEpidemiologia h) {
+		return servicio.insertarHechoEpidem(h);
 	}
 	
 	@PutMapping("/upd")
-	public void actualizar(@RequestBody SclPaciente pac) {
-		servicio.actualizar(pac);
+	public SclHechoEpidemiologia actualizar(@RequestBody SclHechoEpidemiologia h) {
+		return servicio.actualizarHechoEpidem(h);
 	}
 	
 	@DeleteMapping("/del")
-	public void eliminar(@RequestBody SclPaciente pac) {
-		servicio.eliminar(pac);
+	public void eliminar(@RequestBody SclHechoEpidemiologia h) {
+		servicio.eliminarHechoEpidem(h);
 	}
 }

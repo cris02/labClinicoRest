@@ -18,7 +18,7 @@ import com.swrest.servicio.CustomUserDetailsServ;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+	/*
 	@SuppressWarnings("unused")
 	@Autowired
 	private DataSource dataSource;
@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//super.configure(web);
 		auth.authenticationProvider(authProvider());
 	}
-
+	*/
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub

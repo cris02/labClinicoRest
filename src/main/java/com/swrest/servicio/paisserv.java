@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.swrest.model.SclPais;
 import com.swrest.repositorio.PaisRepository;
+import com.swrest.response.PaisResponse;
+
 
 @Service
 public class paisserv
@@ -22,6 +24,10 @@ public class paisserv
     public List<SclPais> listar()
     { return paisrepositorio.findAll(); }
     
+    public SclPais listarId(String id) {
+    	return paisrepositorio.findById(id).orElse(null);
+    }
+    
     public void eliminar(SclPais a_obj)
     { paisrepositorio.delete(a_obj); }
     
@@ -33,5 +39,9 @@ public class paisserv
     	paisrepositorio.deleteById(id);
     }
     
+    public List<PaisResponse> listResponses() {
+    	return paisrepositorio.findList();
+    }
+
 }
 

@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.swrest.model.SclExamencoprologia;
+import com.swrest.model.SclExamencoprologiaPK;
 import com.swrest.model.SclExamenhematologia;
+import com.swrest.model.SclExamenhematologiaPK;
 import com.swrest.model.SclExamenquimicaclinica;
+import com.swrest.model.SclExamenquimicaclinicaPK;
 import com.swrest.model.SclExamenurianalisis;
+import com.swrest.model.SclExamenurianalisisPK;
 import com.swrest.repositorio.ExamenCoproRepository;
 import com.swrest.repositorio.ExamenHemaRepository;
 import com.swrest.repositorio.ExamenQumicaRepository;
@@ -30,14 +34,26 @@ public class examenservice {
 	public List<SclExamencoprologia> listarCopro()
 	{	return repo_copro.findAll();	}
 	
+	public SclExamencoprologia listarCoproId(SclExamencoprologiaPK pk)
+	{	return repo_copro.findById(pk).orElse(null);	}
+	
 	public List<SclExamenurianalisis> listarUri()
     { 	return repo_uri.findAll();		}
+	
+	public SclExamenurianalisis listarUriId(SclExamenurianalisisPK pk)
+	{	return repo_uri.findById(pk).orElse(null);	}
 	
 	public List<SclExamenhematologia> listarHema()
     { 	return repo_hema.findAll();		}
 	
+	public SclExamenhematologia listarHemaId(SclExamenhematologiaPK pk)
+    { 	return repo_hema.findById(pk).orElse(null);		}
+	
 	public List<SclExamenquimicaclinica> listarQcl()
 	{	return repo_qcl.findAll();		}
+	
+	public SclExamenquimicaclinica listarQclId(SclExamenquimicaclinicaPK pk)
+    { 	return repo_qcl.findById(pk).orElse(null);		}
 	
 	//Metodos insert
 	public SclExamencoprologia insertar(SclExamencoprologia co)

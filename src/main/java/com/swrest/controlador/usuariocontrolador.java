@@ -27,6 +27,9 @@ public class usuariocontrolador
     public List<SclUsuario> listar()
     { 	return usuarioservicio.listar(); 	}
     
+    @GetMapping("/find")
+    public SclUsuario listarId(@RequestParam Integer id)
+    { 	return usuarioservicio.listarId(id); 	}
     
     @PostMapping("/save")
     public SclUsuario insertar(@RequestBody SclUsuario usu) 

@@ -13,35 +13,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swrest.model.SclDepartamento;
-import com.swrest.model.SclDepartamentoPK;
-import com.swrest.servicio.departamentoserv;
+import com.swrest.model.SclOrdendeexamen;
+import com.swrest.servicio.ordendeexamenserv;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/depto")
-public class departamentocontrolador {
+@RequestMapping("/orden")
+public class ordenexamencontrolador {
 	
 	@Autowired
-	private departamentoserv servicio;
+	private ordendeexamenserv servicio;
 	
 	@GetMapping("/all")
-    public List<SclDepartamento> listar()
+    public List<SclOrdendeexamen> listar()
     { return servicio.listar(); }
 	
-	@GetMapping("/find") //?p= .... &d=
-    public SclDepartamento listarId(@RequestParam String p, Integer d)
-    { return servicio.listarId(new SclDepartamentoPK(p, d)); }
+	@GetMapping("/find") //?id=
+    public SclOrdendeexamen listarId(@RequestParam Integer id)
+    { return servicio.listarId(id); }
     
-    @PostMapping
-    public SclDepartamento insertar(@RequestBody SclDepartamento usu)
+    @PostMapping("/save")
+    public SclOrdendeexamen insertar(@RequestBody SclOrdendeexamen usu)
     { return servicio.insertar(usu); }
     
-    @PutMapping
-    public SclDepartamento actualizar(@RequestBody SclDepartamento a_obj)
+    @PutMapping("/upd")
+    public SclOrdendeexamen actualizar(@RequestBody SclOrdendeexamen a_obj)
     { return servicio.actualizar(a_obj); }
     
-    @DeleteMapping
-    public void eliminar(@RequestBody SclDepartamento a_obj)
+    @DeleteMapping("del")
+    public void eliminar(@RequestBody SclOrdendeexamen a_obj)
     { servicio.eliminar(a_obj); }
 }

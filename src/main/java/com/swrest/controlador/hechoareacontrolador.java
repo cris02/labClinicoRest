@@ -10,42 +10,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swrest.model.SclPaciente;
-import com.swrest.servicio.pacienteserv;
+import com.swrest.model.SclHechosArea;
+import com.swrest.servicio.hechosserv;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/paciente")
-public class pacientecontrolador {
+@RequestMapping("/hechoarea")
+public class hechoareacontrolador {
 	
-	@Autowired 
-	private pacienteserv servicio;
+	@Autowired
+	private hechosserv servicio;
+	
 	
 	@GetMapping("/all")
-	public List<SclPaciente> listar() {
-		return servicio.listar();
-	}
-	
-	@GetMapping("/find") //?id=
-	public SclPaciente listarId(@RequestParam Integer id) {
-		return servicio.listarId(id);
+	public List<SclHechosArea> listar() {
+		return servicio.listarHechosArea();
 	}
 	
 	@PostMapping("/save")
-	public void insertar(@RequestBody SclPaciente pac) {
-		servicio.insertar(pac);
+	public SclHechosArea guardar(@RequestBody SclHechosArea h) {
+		return servicio.insertarHechoArea(h);
 	}
 	
 	@PutMapping("/upd")
-	public void actualizar(@RequestBody SclPaciente pac) {
-		servicio.actualizar(pac);
+	public SclHechosArea actualizar(@RequestBody SclHechosArea h) {
+		return servicio.actualizarHechoArea(h);
 	}
 	
 	@DeleteMapping("/del")
-	public void eliminar(@RequestBody SclPaciente pac) {
-		servicio.eliminar(pac);
+	public void eliminar(@RequestBody SclHechosArea h) {
+		servicio.eliminarHechoArea(h);
 	}
 }
