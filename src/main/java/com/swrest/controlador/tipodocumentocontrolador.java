@@ -22,7 +22,7 @@ public class tipodocumentocontrolador
     @Autowired
     private tipodocumentoserv tipodocumentoservicio;
     
-    @GetMapping
+    @GetMapping("/all")
     public List<SclTipoDocumento> listar()
     { return tipodocumentoservicio.listar(); }
     
